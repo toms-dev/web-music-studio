@@ -6,5 +6,8 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true
-  }
+  },
+  "files": [
+    "Main.ts"
+  ]
 }
