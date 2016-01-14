@@ -2,15 +2,27 @@
 
 import Song from "./model/Song";
 import ClipInstance from "./model/ClipInstance";
+import Clip from "./model/Clip";
+import SequencerSequence from "./model/sequences/SequencerSequence";
+import Sample from "./model/channels/Sample";
+
+var myclip = new Clip();
+var myseq = new SequencerSequence();
+var sample = new Sample();
+sample.filePath = "kick.wav";
+myseq.channel = sample;
+myclip.sequences.push(myseq);
 
 var song = new Song();
-var clip1 = new ClipInstance();
-clip1.startTime = 6400;
-song.playlist.clips.push(clip1);
+var clipInstance1 = new ClipInstance();
+clipInstance1.clip = myclip;
+clipInstance1.startTime = 6400;
+song.playlist.clips.push(clipInstance1);
 
-var clip2 = new ClipInstance();
-clip2.startTime = 6600;
-song.playlist.clips.push(clip2);
+var clipInstance2 = new ClipInstance();
+clipInstance2.clip = myclip;
+clipInstance2.startTime = 6600;
+song.playlist.clips.push(clipInstance2);
 
 song.play();
 setTimeout(() => {

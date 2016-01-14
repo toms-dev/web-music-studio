@@ -5,4 +5,7 @@ export default class Clip {
 
 	public sequences: ClipSequence[];
 
+	constructor() {
+		this.sequences = [];
+	}
 }

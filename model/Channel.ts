@@ -13,7 +13,7 @@ abstract class Channel {
 		// TODO output = new AudioParam();
 	}
 
-	abstract trigger(note: any, duration: number): void ;
+	abstract trigger(note: any, duration: number, startDelay: number): void ;
 
 	abstract interrupt(): void ;
 
