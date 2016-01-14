@@ -16,6 +16,7 @@ export default class Song {
 	private lastUpdate: number;
 
 	constructor() {
+		this.playlist = new Playlist();
 		this.lastPauseElapsed = 0;
 	}
 
@@ -49,13 +50,13 @@ export default class Song {
 		console.log("Tick (delta:"+delta+"\t | time:"+elapsed+")");
 
 		var lookaheadDuration = 2000;
-		this.schedule(now, lookaheadDuration);
+		this.schedule(elapsed, lookaheadDuration);
 
 		this.lastUpdate = now;
 	}
 
-	private schedule(now: number, lookaheadDuration: number): void {
-		this.playlist.schedule(now, lookaheadDuration);
+	private schedule(songTime: number, lookaheadDuration: number): void {
+		this.playlist.schedule(songTime, lookaheadDuration);
 	}
 
 }
