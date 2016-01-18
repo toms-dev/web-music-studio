@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Derp</title>
+    <script src="js/lib/require.js" data-main="js/Main"></script>
+</head>
+<body>
+
+<script>
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    var channel = audioCtx.createAnalyser();
+    channel.connect(audioCtx.destination);
+
+    function getSoundInstance(soundUrl) {
+        var source = audioCtx.createBufferSource();
+        source.connect(channel);
+
+        var request = new XMLHttpRequest();
+
+        request.open('GET', soundUrl, true);
+
+        request.responseType = 'arraybuffer';
+
+        request.onload = function() {
+            var audioData = request.response;
+
+            console.log("SoundURL=" + soundUrl);
+            console.log("Audio data:", audioData);
+            audioCtx.decodeAudioData(audioData,
+                    function(buffer) {
+                        var myBuffer = buffer;
+                        var songLength = buffer.duration;
+                        source.buffer = myBuffer;
+                        //source.playbackRate.value = playbackControl.value;
+
+                        //channel.connect(audioCtx.destination);
+                        //source.connect(audioCtx.destination);
+                        //source.loop = true;
+
+                        //loopstartControl.setAttribute('max', Math.floor(songLength));
+                        //loopendControl.setAttribute('max', Math.floor(songLength));
+                    },
+                    function(e) {"Error with decoding audio data" + e.err}
+            );
+        };
+
+        request.send();
+
+        return source;
+    }
+
+    var url = "./sounds/snare.wav";
+    var sound = getSoundInstance(url);
+
+    setTimeout(function() {
+        sound.start(0);
+    }, 1000);
+
+</script>
+
+</body>
+</html>

@@ -20,6 +20,7 @@ export default class Playlist {
 			return !clip.scheduled;
 		});
 
+		// Schedule all clips
 		for (var iClip = 0; iClip < clipsToSchedule.length; iClip++) {
 			var clip = clipsToSchedule[iClip];
 

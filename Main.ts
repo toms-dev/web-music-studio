@@ -1,4 +1,6 @@
 
+console.log("Hello world!");
+console.log("Hello world!");
 
 import Song from "./model/Song";
 import ClipInstance from "./model/ClipInstance";
@@ -9,7 +11,7 @@ import Sample from "./model/channels/Sample";
 var myclip = new Clip();
 var myseq = new SequencerSequence();
 var sample = new Sample();
-sample.filePath = "kick.wav";
+sample.filePath = "sounds/snare.wav";
 myseq.channel = sample;
 myclip.sequences.push(myseq);
 
@@ -21,7 +23,7 @@ song.playlist.clips.push(clipInstance1);
 
 var clipInstance2 = new ClipInstance();
 clipInstance2.clip = myclip;
-clipInstance2.startTime = 6600;
+clipInstance2.startTime = 7600;
 song.playlist.clips.push(clipInstance2);
 
 song.play();
@@ -33,3 +35,4 @@ setTimeout(() => {
 		song.play();
 	}, 2500)
 }, 2500);
+
