@@ -6,7 +6,9 @@ import Song from "./model/Song";
 import ClipInstance from "./model/ClipInstance";
 import Clip from "./model/Clip";
 import SequencerSequence from "./model/sequences/SequencerSequence";
-import Sample from "./model/channels/Sample";
+import Sample from "./model/channels/SampleChannel";
+
+var song = new Song();
 
 var myclip = new Clip();
 var myseq = new SequencerSequence();
@@ -15,7 +17,6 @@ sample.filePath = "sounds/snare.wav";
 myseq.channel = sample;
 myclip.sequences.push(myseq);
 
-var song = new Song();
 var clipInstance1 = new ClipInstance();
 clipInstance1.clip = myclip;
 clipInstance1.startTime = 6400;
