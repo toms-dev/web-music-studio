@@ -1,13 +1,12 @@
-var express = require('express');
-var router = express.Router();
+/**
+ * Created by ludovic on 25/01/16.
+ */
 var requireDirectory = require('require-directory');
 
+var express = require('express');
+var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
-});
-
+// Loads API routes
 var apiRoutes = requireDirectory(module, {recurse: false});
 for(var route in apiRoutes) {
     if(!apiRoutes.hasOwnProperty(route)) continue;
