@@ -3,21 +3,28 @@
  */
 import React from 'react';
 import  ReactDOM from 'react-dom';
-//import Sequencer from './Sequencer'
+var NB_TRACK = require('NB_TRACK');
+var tracks = [];
 
 class Channel extends React.Component {
     render() {
-        return <div>channel</div>
+        //return <div key={this.props.key}>channel</div>
+        return <div>channel{this.props.key} {this.props.id}</div>
     }
 }
 
-Channel.defaultProps ={
-    nb_track : 4
+Channel.propTypes = {
+    id: React.PropTypes.number.isRequired
+}
+
+Channel.defaultProps = {
+    key: 0,
+    id: 0,
+    nb_track: NB_TRACK
 }
 
 ReactDOM.render(
-    <Channel nb_chan="{5}" />,
-    document.getElementById('sequencer')
+    <Channel/>, document.getElementById('sequencer')
 )
 
 export default Channel

@@ -5,28 +5,37 @@ import React from 'react';
 import  ReactDOM from 'react-dom';
 import Channel from './Channel';
 
+var NB_CHAN = require('NB_CHAN');
+var channels = [];
+
 class Sequencer extends React.Component {
     render() {
-        let nb_chan = this.props.nb_chan;
-        let i = 0;
-        var buf;
-       /* for (i=0; i<nb_chan-1; i++){
-            let current_id = "channel"+i;
-            buf += <div id="channel">sequencer</div>
-            console.log('lel');
-            React.CreateElement(null, {nb_track: 4}, Channel)
-        }*/
-        return <h1>sequencer</h1>
+            console.log("CC SI JE RENTRE 2 FOIS ICI ALORS JE PEUX PAS INIT LES CHANNELS :D")
+            let nb_chan = this.props.nb_chan;
+            for (var i = 0; i < nb_chan - 1; i++) {
+                console.log(i);
+                channels.push(React.createElement(Channel, {key: i}))
+            }
+            console.log(channels)
+            return <div id={this.props.id}>{channels}</div>;
+
+    }
+
+    addChannel(index) {
     }
 }
 
-Sequencer.defaultProps ={
-    nb_chan : 2
+Sequencer.propTypes = {
+    nb_chan: React.PropTypes.number.isRequired
+}
+
+Sequencer.defaultProps = {
+    id: "sequencer",
+    nb_chan: NB_CHAN
 }
 
 ReactDOM.render(
-    <Sequencer nb_chan={3} />,
-    document.getElementById('sequencer')
+    <Sequencer/>, document.getElementById('sequencer')
 )
 
 export default Sequencer

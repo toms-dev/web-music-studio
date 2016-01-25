@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "json-loader": "^0.5.4"
   }
 }

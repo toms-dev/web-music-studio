@@ -11,6 +11,13 @@ module.exports = {
         inline: true,
         port: 3333
     },
+    resolve: {
+        extensions: [
+            "",
+            ".js",
+            ".json",
+        ],
+    },
     module: {
         loaders: [
             {
@@ -20,7 +27,19 @@ module.exports = {
                 query: {
                     presets: ['es2015', 'react']
                 }
-            }
+            },
+            {
+                test: /\.json$/,
+                loaders: [
+                    "json",
+                ],
+            },
         ]
+    },
+    externals: {
+        'CLIP_EDITOR_X': "4",
+        'CLIP_EDITOR_Y': "6",
+        'NB_CHAN': "5",
+        'NB_TRACK': "0"
     }
 }

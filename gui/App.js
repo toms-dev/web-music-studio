@@ -3,16 +3,19 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import Sequencer from './js/Sequencer'
+import Sequencer from './js/Sequencer'
 
-//var sequencer = React.createElement(Sequencer, {nb_chan: 3});
+
+/* Ex with argument passing
+ var sequencer = React.createElement(Sequencer, {nb_chan: 3}); */
+
+//var sequencer = React.createElement(Sequencer);
 
 class App extends React.Component {
     render() {
-        //var seq_child = sequencer;
-        //return (<seq_child />);
-        return <div> :) </div>
+        return <div>
+            <Sequencer/></div>
     }
 }
 
-export default App
+export  default  App;
