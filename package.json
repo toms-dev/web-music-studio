@@ -4,5 +4,8 @@
   "devDependencies": {
     "typescript": "^1.7.5",
     "typings": "^0.6.6"
+  },
+  "scripts": {
+    "postinstall": "typings install && tsc"
   }
 }
