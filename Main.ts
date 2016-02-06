@@ -26,31 +26,17 @@ var kickSeq1 = new SequencerSequence([1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,1], 4);
 kickSeq1.channel = kick;
 myclip.sequences.push(kickSeq1);
 
-/*for (var i = 0; i < 32; i++) {
-	var clipInstance = new ClipInstance(myclip, 4);
-	clipInstance.startStep = i;
-	song.playlist.clips.push(clipInstance);
-}*/
-
-/*var clipInstance1 = new ClipInstance(4);
-clipInstance1.clip = myclip;
-clipInstance1.startStep = 4;*/
-
 song.playlist.addClip(myclip, 4);
 song.playlist.addClip(myclip, 8);
 song.playlist.addClip(myclip, 12);
 song.playlist.addClip(myclip, 16);
 
 
-/*var clipInstance2 = new ClipInstance(4, songConfig);
-clipInstance2.clip = myclip;
-clipInstance2.startStep = 8;
-song.playlist.clips.push(clipInstance2);*/
-
 $("#play").click(() => {
 	song.play();
 });
 
+// Simulate a pause halfway
 /*setTimeout(() => {
 	console.log("Pausing");
 	song.pause();
