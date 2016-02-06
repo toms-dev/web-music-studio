@@ -12,5 +12,9 @@
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "json-loader": "^0.5.4"
+  },
+  "devDependencies": {
+    "webpack": "^1.12.13",
+    "webpack-dev-server": "^1.14.1"
   }
 }
