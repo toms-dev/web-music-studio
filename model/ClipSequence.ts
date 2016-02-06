@@ -11,7 +11,7 @@ abstract class ClipSequence {
 	public clip: Clip;
 	public channel: Channel;
 
-	abstract play(startDelay: number): void;
+	abstract play(start: number, end: number, startDelay: number): void;
 
 }
 

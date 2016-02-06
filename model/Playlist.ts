@@ -10,10 +10,11 @@ export default class Playlist {
 		this.lanes = [];
 	}
 
-	public schedule(songTime: number, lookaheadDuration: number): void {
+	public schedule(songTime: number, lookaheadDuration: number, elapsedSteps: number, lookaheadSteps: number): void {
 		//console.log("Getting clips between " + songTime + " with lookahead=" + lookaheadDuration);
-		// Retrieve the clips that have to be scheduled
-		var clipsToSchedule = this.retrieveClipsBetween(songTime, songTime + lookaheadDuration);
+		// Retrieve the clip instances that have to be scheduled
+		//var clipsToSchedule = this.retrieveClipsBetween(songTime, songTime + lookaheadDuration);
+		var clipsToSchedule = this.retrieveClipsBetween(elapsedSteps, elapsedSteps + lookaheadSteps);
 
 		// Remove clips that are already scheduled.
 		clipsToSchedule = clipsToSchedule.filter((clip: ClipInstance) => {
@@ -22,11 +23,10 @@ export default class Playlist {
 
 		// Schedule all clips
 		for (var iClip = 0; iClip < clipsToSchedule.length; iClip++) {
-			var clip = clipsToSchedule[iClip];
+			var clipInstance = clipsToSchedule[iClip];
 
-			// Compute the delay before the clip begins
-			var clipStartDelay = clip.startTime - songTime;
-			clip.play(clipStartDelay);
+			//clipInstance.play(songTime, lookaheadDuration);
+			clipInstance.play(elapsedSteps, lookaheadSteps);
 		}
 	}
 

@@ -1,11 +1,16 @@
 
 import User from "./User";
 import Playlist from "./Playlist";
+import SongConfig from "./SongConfig";
+import SongTimeConverter from "./utils/SongTimeConverter";
+
 export default class Song {
 
 	public name:string;
 	public user: User;
 	public playlist: Playlist;
+
+	public config: SongConfig;
 
 	private loopInterval: number;
 	private lastResumeTime: number;
@@ -16,8 +21,15 @@ export default class Song {
 	private lastUpdate: number;
 
 	constructor() {
+		this.config = new SongConfig();
 		this.playlist = new Playlist();
 		this.lastPauseElapsed = 0;
+
+		this.setupDefaultConfig();
+	}
+
+	private setupDefaultConfig(): void {
+		this.config.bpm = 128;
 	}
 
 	public play(): void {
@@ -46,17 +58,22 @@ export default class Song {
 	public loop(): void {
 		var now = Date.now();
 		var delta = now - this.lastUpdate;
-		var elapsed = this.getElapsedTime(now);
-		console.log("Tick (delta:"+delta+"\t | time:"+elapsed+")");
+		// Get elapsed time in ms
+		var elapsedTime = this.getElapsedTime(now);
+		// Convert it to musical steps
+		var elapsedSteps = SongTimeConverter.timeToSongTime(elapsedTime, this.config);
+
+		console.log("Tick (delta:"+delta+"\t | time:"+elapsedTime+")");
 
 		var lookaheadDuration = 2000;
-		this.schedule(elapsed, lookaheadDuration);
+		var lookaheadSteps = SongTimeConverter.timeToSongTime(lookaheadDuration, this.config);
+		this.schedule(elapsedTime, lookaheadDuration, elapsedSteps, lookaheadSteps);
 
 		this.lastUpdate = now;
 	}
 
-	private schedule(songTime: number, lookaheadDuration: number): void {
-		this.playlist.schedule(songTime, lookaheadDuration);
+	private schedule(songTime: number, lookaheadDuration: number, elapsedSteps: number, lookaheadSteps: number): void {
+		this.playlist.schedule(songTime, lookaheadDuration, elapsedSteps, lookaheadSteps);
 	}
 
 }

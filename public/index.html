@@ -14,6 +14,7 @@
     channel.connect(audioCtx.destination);
 
     function getSoundInstance(soundUrl) {
+        console.debug("GETTING SOUND INSTANCE!!!");
         var source = audioCtx.createBufferSource();
         source.connect(channel);
 
@@ -25,7 +26,7 @@
 
         request.onload = function() {
             var audioData = request.response;
-
+            console.debug("LOADED!!");
             console.log("SoundURL=" + soundUrl);
             console.log("Audio data:", audioData);
             audioCtx.decodeAudioData(audioData,
@@ -36,7 +37,7 @@
                         //source.playbackRate.value = playbackControl.value;
 
                         //channel.connect(audioCtx.destination);
-                        //source.connect(audioCtx.destination);
+                        source.connect(audioCtx.destination);
                         //source.loop = true;
 
                         //loopstartControl.setAttribute('max', Math.floor(songLength));
@@ -52,11 +53,11 @@
     }
 
     var url = "./sounds/snare.wav";
-    var sound = getSoundInstance(url);
+    /*var sound = getSoundInstance(url);
 
     setTimeout(function() {
-        sound.start(0);
-    }, 1000);
+        sound.start(audioCtx.currentTime + 1.500);
+    }, 1000);*/
 
 </script>
 
