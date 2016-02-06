@@ -13,7 +13,8 @@ export default class Song {
 
 	public config: SongConfig;
 
-	private loopFrequency = 2;
+	//private loopFrequency = 2;
+	private loopFrequency = 50;
 	private loopInterval: number;
 	private lastResumeTime: number;
 

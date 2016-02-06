@@ -20,13 +20,13 @@ sample.filePath = "sounds/snare.wav";
 myseq.channel = sample;
 myclip.sequences.push(myseq);
 
-/*for (var i = 0; i < 32; i++) {
+for (var i = 0; i < 32; i++) {
 	var clipInstance = new ClipInstance(4, songConfig);
 	clipInstance.clip = myclip;
-	clipInstance.startTime = (i+1);
+	clipInstance.startStep = i;
 	song.playlist.clips.push(clipInstance);
-}*/
-var clipInstance1 = new ClipInstance(4, songConfig);
+}
+/*var clipInstance1 = new ClipInstance(4, songConfig);
 clipInstance1.clip = myclip;
 clipInstance1.startStep = 4;
 song.playlist.clips.push(clipInstance1);
@@ -34,7 +34,7 @@ song.playlist.clips.push(clipInstance1);
 var clipInstance2 = new ClipInstance(4, songConfig);
 clipInstance2.clip = myclip;
 clipInstance2.startStep = 8;
-song.playlist.clips.push(clipInstance2);
+song.playlist.clips.push(clipInstance2);*/
 
 $("#play").click(() => {
 	song.play();
