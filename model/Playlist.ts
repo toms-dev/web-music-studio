@@ -1,5 +1,7 @@
 
 import ClipInstance from "./ClipInstance";
+import SongTime from "./SongTime";
+import SongTimeConverter from "./utils/SongTimeConverter";
 export default class Playlist {
 
 	public clips: ClipInstance[];
@@ -10,8 +12,12 @@ export default class Playlist {
 		this.lanes = [];
 	}
 
-	public schedule(songTime: number, lookaheadDuration: number, elapsedSteps: number, lookaheadSteps: number): void {
-		console.debug("PLAYLIST: Getting clips between " + songTime + " with lookahead=" + lookaheadDuration);
+	public schedule(songTime: SongTime, lookahead: SongTime): void {//lookaheadDuration: number, elapsedSteps:
+		// number, lookaheadSteps: number): void {
+		var elapsedSteps = songTime.toSteps(),
+			lookaheadSteps = lookahead.toSteps();
+		//console.debug("PLAYLIST: Getting clips between " + songTime + " with lookahead=" + lookaheadDuration);
+		console.debug("PLAYLIST: Getting clips between " + elapsedSteps + " with lookahead=" + lookaheadSteps+ " (steps units)");
 		// Retrieve the clip instances that have to be scheduled
 		//var clipsToSchedule = this.retrieveClipsBetween(songTime, songTime + lookaheadDuration);
 		var clipsToSchedule = this.retrieveClipsBetween(elapsedSteps, elapsedSteps + lookaheadSteps);
@@ -27,7 +33,7 @@ export default class Playlist {
 			var clipInstance = clipsToSchedule[iClip];
 
 			//clipInstance.play(songTime, lookaheadDuration);
-			clipInstance.play(elapsedSteps, lookaheadSteps);
+			clipInstance.play(songTime, lookahead);
 		}
 	}
 
@@ -44,12 +50,12 @@ export default class Playlist {
 		for (var iClip = 0; iClip < this.clips.length; ++iClip) {
 			var clip = this.clips[iClip];
 			// Skip clips until we reach the right start time
-			if (clip.startTime < startTime) {
+			if (clip.startStep < startTime) {
 				continue ;
 			}
 
 			// Stop if we got past the end of the time interval we are interested in
-			if (clip.startTime > endTime) {
+			if (clip.startStep > endTime) {
 				break;
 			}
 

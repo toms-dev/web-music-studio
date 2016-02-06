@@ -1,5 +1,6 @@
 
 import ClipSequence from "../ClipSequence";
+import SongTime from "../SongTime";
 
 export default class SequencerSequence extends ClipSequence {
 
@@ -11,9 +12,9 @@ export default class SequencerSequence extends ClipSequence {
 		this.sequence = sequence;
 	}
 
-	play(start: number, end: number, startDelay: number): void {
+	play(start: SongTime, end: SongTime, startDelay: SongTime): void {
 		console.log("Trigger C");
-		this.channel.trigger("C", 200, startDelay);
+		this.channel.trigger("C", 200, startDelay.toTime());
 	}
 
 }

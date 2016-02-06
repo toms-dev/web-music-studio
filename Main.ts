@@ -28,12 +28,12 @@ myclip.sequences.push(myseq);
 }*/
 var clipInstance1 = new ClipInstance(4, songConfig);
 clipInstance1.clip = myclip;
-clipInstance1.startTime = 4;
+clipInstance1.startStep = 4;
 song.playlist.clips.push(clipInstance1);
 
 var clipInstance2 = new ClipInstance(4, songConfig);
 clipInstance2.clip = myclip;
-clipInstance2.startTime = 8;
+clipInstance2.startStep = 8;
 song.playlist.clips.push(clipInstance2);
 
 $("#play").click(() => {

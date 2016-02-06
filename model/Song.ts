@@ -3,6 +3,7 @@ import User from "./User";
 import Playlist from "./Playlist";
 import SongConfig from "./SongConfig";
 import SongTimeConverter from "./utils/SongTimeConverter";
+import SongTime from "./SongTime";
 
 export default class Song {
 
@@ -62,20 +63,21 @@ export default class Song {
 		var delta = now - this.lastUpdate;
 		// Get elapsed time in ms
 		var elapsedTime = this.getElapsedTime(now);
-		// Convert it to musical steps
-		var elapsedSteps = SongTimeConverter.timeToSongTime(elapsedTime, this.config);
+		// Convert it to a SongTime object
+		var elapsed = SongTime.fromTime(elapsedTime, this.config);
 
-		console.log("Tick (delta:"+delta+"\t | time:"+elapsedTime+" | steps:"+elapsedSteps);
+		console.log("Tick (delta:"+delta+"\t | time:"+elapsedTime+" | steps:"+elapsed.toSteps());
 
 		var lookaheadDuration = 2000;
-		var lookaheadSteps = SongTimeConverter.timeToSongTime(lookaheadDuration, this.config);
-		this.schedule(elapsedTime, lookaheadDuration, elapsedSteps, lookaheadSteps);
+		var lookahead = SongTime.fromTime(lookaheadDuration, this.config);
+
+		this.schedule(elapsed, lookahead);
 
 		this.lastUpdate = now;
 	}
 
-	private schedule(songTime: number, lookaheadDuration: number, elapsedSteps: number, lookaheadSteps: number): void {
-		this.playlist.schedule(songTime, lookaheadDuration, elapsedSteps, lookaheadSteps);
+	private schedule(songTime: SongTime, lookaheadDuration: SongTime): void {
+		this.playlist.schedule(songTime, lookaheadDuration);
 	}
 
 }

@@ -1,5 +1,6 @@
 import Clip from "./Clip";
 import Channel from "./Channel";
+import SongTime from "./SongTime";
 /**
  * This is the rythmic content of a clip for one given instrument
  */
@@ -11,7 +12,7 @@ abstract class ClipSequence {
 	public clip: Clip;
 	public channel: Channel;
 
-	abstract play(start: number, end: number, startDelay: number): void;
+	abstract play(start: SongTime, end: SongTime, startDelay: SongTime): void;
 
 }
 
