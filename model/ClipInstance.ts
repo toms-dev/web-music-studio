@@ -16,14 +16,12 @@ class ClipInstance {
 
 	public truncStart: number;
 	public truncEnd: number;
-	private config: SongConfig;
 
-	constructor(length: number, config: SongConfig) {
+	constructor(clip: Clip, length: number) {
+		this.clip = clip;
 		this.length = length;
 		this.scheduled = false;
 		this.localScheduledStep = 0;
-
-		this.config = config;
 	}
 
 	/**

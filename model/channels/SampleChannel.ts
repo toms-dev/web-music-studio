@@ -5,6 +5,11 @@ export default class SampleChannel extends Channel {
 
 	public filePath: string;
 
+	constructor(filePath: string) {
+		super();
+		this.filePath = filePath;
+	}
+
 	trigger(note: any, duration: number, startDelayMS: number): void {
 		console.log("Playing sound "+this.filePath+"  in "+startDelayMS+" ms");
 

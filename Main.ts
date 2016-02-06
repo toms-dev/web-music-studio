@@ -13,23 +13,34 @@ var song = new Song();
 var songConfig = new SongConfig();
 songConfig.bpm = 128;
 
+var snare = new Sample("sounds/snare.wav"),
+	kick = new Sample( "sounds/kick3.wav");
+
 var myclip = new Clip();
-var myseq = new SequencerSequence([0,0,1,0, 0,0,1,0, 0,0,1,0, 1,0,0,0], 4);
-var sample = new Sample();
-sample.filePath = "sounds/snare.wav";
-myseq.channel = sample;
-myclip.sequences.push(myseq);
+
+var snareSeq1 = new SequencerSequence([0,0,1,0, 0,0,1,0, 0,0,1,0, 1,0,0,0], 4);
+snareSeq1.channel = snare;
+myclip.sequences.push(snareSeq1);
+
+var kickSeq1 = new SequencerSequence([1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,1], 4);
+kickSeq1.channel = kick;
+myclip.sequences.push(kickSeq1);
 
 /*for (var i = 0; i < 32; i++) {
-	var clipInstance = new ClipInstance(4, songConfig);
-	clipInstance.clip = myclip;
+	var clipInstance = new ClipInstance(myclip, 4);
 	clipInstance.startStep = i;
 	song.playlist.clips.push(clipInstance);
 }*/
-var clipInstance1 = new ClipInstance(4, songConfig);
+
+/*var clipInstance1 = new ClipInstance(4);
 clipInstance1.clip = myclip;
-clipInstance1.startStep = 4;
-song.playlist.clips.push(clipInstance1);
+clipInstance1.startStep = 4;*/
+
+song.playlist.addClip(myclip, 4);
+song.playlist.addClip(myclip, 8);
+song.playlist.addClip(myclip, 12);
+song.playlist.addClip(myclip, 16);
+
 
 /*var clipInstance2 = new ClipInstance(4, songConfig);
 clipInstance2.clip = myclip;

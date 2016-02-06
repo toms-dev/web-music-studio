@@ -2,6 +2,7 @@
 import ClipInstance from "./ClipInstance";
 import SongTime from "./SongTime";
 import SongTimeConverter from "./utils/SongTimeConverter";
+import Clip from "./Clip";
 export default class Playlist {
 
 	public clips: ClipInstance[];
@@ -62,5 +63,11 @@ export default class Playlist {
 			clips.push(clip);
 		}
 		return clips;
+	}
+
+	addClip(clip: Clip, startStep: number): void {
+		var instance = new ClipInstance(clip, 4);
+		instance.startStep = startStep;
+		this.clips.push(instance)
 	}
 }
