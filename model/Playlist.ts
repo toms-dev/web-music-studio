@@ -17,17 +17,16 @@ export default class Playlist {
 		// number, lookaheadSteps: number): void {
 		var elapsedSteps = songTime.toSteps(),
 			lookaheadSteps = lookahead.toSteps();
-		//console.debug("PLAYLIST: Getting clips between " + songTime + " with lookahead=" + lookaheadDuration);
-		console.debug("PLAYLIST: Getting clips between " + elapsedSteps + " with lookahead=" + lookaheadSteps+ " (steps units)");
+		//console.debug("PLAYLIST: Getting clips between " + elapsedSteps + " with lookahead=" + lookaheadSteps+ " (steps units)");
+
 		// Retrieve the clip instances that have to be scheduled
-		//var clipsToSchedule = this.retrieveClipsBetween(songTime, songTime + lookaheadDuration);
 		var clipsToSchedule = this.retrieveClipsBetween(elapsedSteps, elapsedSteps + lookaheadSteps);
 
 		// Remove clips that are already scheduled.
 		clipsToSchedule = clipsToSchedule.filter((clip: ClipInstance) => {
 			return !clip.scheduled;
 		});
-		console.debug("PLAYLIST: Clips to schedule: "+clipsToSchedule.length);
+		if (clipsToSchedule.length > 0) console.debug("PLAYLIST: Clips to schedule: "+clipsToSchedule.length);
 
 		// Schedule all clips
 		for (var iClip = 0; iClip < clipsToSchedule.length; iClip++) {
