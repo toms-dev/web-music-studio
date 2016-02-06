@@ -1,4 +1,8 @@
 {
   "name": "web-music-studio",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "devDependencies": {
+    "typescript": "^1.7.5",
+    "typings": "^0.6.6"
+  }
 }

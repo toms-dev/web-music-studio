@@ -12,8 +12,10 @@ export default class Song {
 
 	public config: SongConfig;
 
+	private loopFrequency = 2;
 	private loopInterval: number;
 	private lastResumeTime: number;
+
 	/**
 	 * Local time elapsed when the last pause was triggered.
 	 */
@@ -37,7 +39,7 @@ export default class Song {
 		this.lastUpdate = Date.now();
 		this.loopInterval = setInterval(() => {
 			this.loop();
-		}, 1000)
+		}, 1000/this.loopFrequency);
 	}
 
 	public pause(): void {
@@ -63,7 +65,7 @@ export default class Song {
 		// Convert it to musical steps
 		var elapsedSteps = SongTimeConverter.timeToSongTime(elapsedTime, this.config);
 
-		console.log("Tick (delta:"+delta+"\t | time:"+elapsedTime+")");
+		console.log("Tick (delta:"+delta+"\t | time:"+elapsedTime+" | steps:"+elapsedSteps);
 
 		var lookaheadDuration = 2000;
 		var lookaheadSteps = SongTimeConverter.timeToSongTime(lookaheadDuration, this.config);

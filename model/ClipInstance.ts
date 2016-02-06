@@ -31,6 +31,7 @@ class ClipInstance {
 	 * @param lookahead Unit: steps
 	 */
 	play(songTime: number, lookahead: number): void {
+		console.group("Playing instance");
 		console.debug("NOW/LOOKAHEAD=", songTime, lookahead);
 		console.debug("START/LENGTH", this.startTime, this.length);
 
@@ -55,6 +56,7 @@ class ClipInstance {
 		}
 
 		this.localScheduledTime = localScheduleEnd;
+		console.groupEnd();
 	}
 
 }

@@ -4,9 +4,11 @@
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "outDir": "./public/js"
+    "outDir": "./public/js",
+    "sourceMap": true
   },
   "files": [
-    "Main.ts"
+    "Main.ts",
+    "typings/browser.d.ts"
   ]
 }
