@@ -13,8 +13,11 @@ var song = new Song();
 var songConfig = new SongConfig();
 songConfig.bpm = 128;
 
+// Create the channels
 var snare = new Sample("sounds/snare.wav"),
 	kick = new Sample( "sounds/kick3.wav");
+song.channels.push(snare);
+song.channels.push(kick);
 
 var myclip = new Clip();
 

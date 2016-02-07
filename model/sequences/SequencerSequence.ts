@@ -9,19 +9,19 @@ export default class SequencerSequence extends ClipSequence {
 	/**
 	 * As we are representing the pattern with an array, we can specify the time scale of each element of the array
 	 */
-	private stepsPerBeat: number;
+	private elementsPerBeat: number;
 
-	constructor(sequence: number[], stepsPerBeat: number) {
+	constructor(sequence: number[], elementsPerBeat: number) {
 		super();
 		this.sequence = sequence;
-		this.stepsPerBeat = stepsPerBeat;
+		this.elementsPerBeat = elementsPerBeat;
 	}
 
 	play(start: SongTime, end: SongTime, startDelay: SongTime): void {
 		console.warn("Sequencer is triggering only C notes");
 
 		// 1 step = 1 element of the array
-		var stepDuration = start.config.getStepDuration() / this.stepsPerBeat;
+		var stepDuration = start.config.getStepDuration() / this.elementsPerBeat;
 		//this.channel.trigger("C", 200, startDelay.toTime());
 
 		for (var i = 0; i < this.sequence.length; ++i) {
@@ -31,6 +31,13 @@ export default class SequencerSequence extends ClipSequence {
 				this.channel.trigger("C", 200, hitDelay);
 			}
 		}
+	}
+
+	concreteToJSON(): any {
+		return {
+			sequence: this.sequence,
+			elementsPerBeat: this.elementsPerBeat
+		};
 	}
 
 }

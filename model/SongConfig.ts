@@ -7,4 +7,10 @@ export default class SongConfig {
 		var beatsPerSeconds = this.bpm/60;
 		return 1000/beatsPerSeconds;
 	}
+
+	toJSON(): any {
+		return {
+			bpm: this.bpm
+		}
+	}
 }

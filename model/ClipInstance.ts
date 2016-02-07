@@ -65,6 +65,13 @@ class ClipInstance {
 		console.groupEnd();
 	}
 
+	toJSON(): any {
+		return {
+			clipID: this.clip.id,
+			startStep: this.startStep,
+			length: this.length
+		}
+	}
 }
 
 export default ClipInstance;

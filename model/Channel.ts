@@ -7,7 +7,19 @@ abstract class Channel {
 	public volume: number;
 	public panning: number;
 
-	public output: AudioParam; // WebAudio Param
+	public output: AudioParam;
+
+	public id: number;
+	public static idAutoIncrement: number = 1;
+
+	constructor(id: number = null) {
+		if (id == null) {
+			id = Channel.idAutoIncrement++;
+		}
+		this.id = id;
+	}
+
+// WebAudio Param
 
 	setup(): void {
 		// TODO output = new AudioParam();
@@ -16,6 +28,20 @@ abstract class Channel {
 	abstract trigger(note: any, duration: number, startDelay: number): void ;
 
 	abstract interrupt(): void ;
+
+	public toJSON(): any {
+		return {
+			volume: this.volume,
+			panning: this.panning,
+			// that's so ugly lol
+			concreteChannel: this.concreteToJSON()
+		}
+	}
+
+	/**
+	 * Returns the data from the concrete class implementing the channel.
+	 */
+	abstract concreteToJSON(): any;
 
 }
 

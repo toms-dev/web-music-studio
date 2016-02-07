@@ -14,6 +14,15 @@ abstract class ClipSequence {
 
 	abstract play(start: SongTime, end: SongTime, startDelay: SongTime): void;
 
+	toJSON(): any {
+		return {
+			channelID: this.channel.id,
+			clipSequenceType: (<any> this.constructor).name,
+			concreteSequenceData: this.concreteToJSON()
+		}
+	}
+
+	abstract concreteToJSON(): any ;
 }
 
 export default ClipSequence;
