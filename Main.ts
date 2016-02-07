@@ -20,6 +20,7 @@ song.channels.push(snare);
 song.channels.push(kick);
 
 var myclip = new Clip();
+song.clips.push(myclip);
 
 var snareSeq1 = new SequencerSequence([0,0,1,0, 0,0,1,0, 0,0,1,0, 1,0,0,0], 4);
 snareSeq1.channel = snare;
@@ -29,15 +30,18 @@ var kickSeq1 = new SequencerSequence([1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,0,1], 4);
 kickSeq1.channel = kick;
 myclip.sequences.push(kickSeq1);
 
-song.playlist.addClip(myclip, 4);
-song.playlist.addClip(myclip, 8);
-song.playlist.addClip(myclip, 12);
-song.playlist.addClip(myclip, 16);
+// Note: there is some indirection with the clipID, but it ensures that the clip is globally declared.
+song.playlist.addClip(myclip.id, 4);
+song.playlist.addClip(myclip.id, 8);
+song.playlist.addClip(myclip.id, 12);
+song.playlist.addClip(myclip.id, 16);
 
 
 $("#play").click(() => {
 	song.play();
 });
+
+(<any> window).song = song;
 
 // Simulate a pause halfway
 /*setTimeout(() => {
@@ -48,5 +52,4 @@ $("#play").click(() => {
 		song.play();
 	}, 2500)
 }, 2500);
-
 */
