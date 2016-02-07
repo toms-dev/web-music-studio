@@ -4,6 +4,7 @@
 import React from 'react';
 import  ReactDOM from 'react-dom';
 import Channel from './Channel';
+import ClipButton from './ClipButton';
 
 var NB_CHAN = require('NB_CHAN');
 var channels = [];
@@ -16,6 +17,7 @@ class Sequencer extends React.Component {
                 console.log(i);
                 channels.push(React.createElement(Channel, {key: i}))
             }
+            channels.push(React.createElement(ClipButton))
             console.log(channels)
             return <div id={this.props.id}>{channels}</div>;
 

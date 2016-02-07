@@ -3,6 +3,7 @@ import Channel from "../Channel";
 
 export default class SampleChannel extends Channel {
 
+
 	public filePath: string;
 
 	constructor(filePath: string) {
@@ -19,6 +20,12 @@ export default class SampleChannel extends Channel {
 	}
 
 	interrupt(): void {
+	}
+
+	concreteToJSON(): any {
+		return {
+			filePath: this.filePath
+		};
 	}
 
 }

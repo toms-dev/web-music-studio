@@ -4,6 +4,7 @@ import Playlist from "./Playlist";
 import SongConfig from "./SongConfig";
 import SongTimeConverter from "./utils/SongTimeConverter";
 import SongTime from "./SongTime";
+import Channel from "./Channel";
 
 export default class Song {
 
@@ -23,10 +24,12 @@ export default class Song {
 	 */
 	private lastPauseElapsed: number;
 	private lastUpdate: number;
+	public channels: Channel[];
 
 	constructor() {
 		this.config = new SongConfig();
 		this.playlist = new Playlist();
+		this.channels = [];
 		this.lastPauseElapsed = 0;
 
 		this.setupDefaultConfig();
@@ -79,6 +82,16 @@ export default class Song {
 
 	private schedule(songTime: SongTime, lookaheadDuration: SongTime): void {
 		this.playlist.schedule(songTime, lookaheadDuration);
+	}
+
+	public toJSON(): any {
+		return {
+			name: this.name,
+			author: this.user.email,
+			config: this.config.toJSON(),
+			playlist: this.playlist.toJSON(),
+			channels: this.channels.map((c: Channel) => { return c.toJSON();})
+		}
 	}
 
 }
