@@ -2,10 +2,10 @@
  * Created by Louis on 18/01/2016.
  */
 module.exports = {
-    entry: './main.js',
+    entry: './js/main.js',
     output: {
         path: './build/',
-        filename: 'index.js'
+        filename: 'js/index.js'
     },
     devServer: {
         inline: true,
