@@ -5,6 +5,7 @@ import SongConfig from "./SongConfig";
 import SongTimeConverter from "./utils/SongTimeConverter";
 import SongTime from "./SongTime";
 import Channel from "./Channel";
+import Clip from "./Clip";
 
 export default class Song {
 
@@ -24,16 +25,42 @@ export default class Song {
 	 */
 	private lastPauseElapsed: number;
 	private lastUpdate: number;
+
 	public channels: Channel[];
+	public clips: Clip[];
 
 	constructor() {
 		this.config = new SongConfig();
 		this.playlist = new Playlist();
 		this.channels = [];
+		this.clips = [];
 		this.lastPauseElapsed = 0;
 
 		this.setupDefaultConfig();
 	}
+
+	getChannel(channelID: number): Channel {
+		for (var i in this.channels) {
+			if (! this.channels.hasOwnProperty(i)) continue;
+			var channel = this.channels[i];
+			if (channel.id == channelID) {
+				return channel;
+			}
+		}
+		return null;
+	}
+
+	getClip(clipID: number): Clip {
+		for (var i in this.clips) {
+			if (! this.clips.hasOwnProperty(i)) continue;
+			var clip = this.clips[i];
+			if (clip.id == clipID) {
+				return clip;
+			}
+		}
+		return null;
+	}
+
 
 	private setupDefaultConfig(): void {
 		this.config.bpm = 128;

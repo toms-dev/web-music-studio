@@ -20,6 +20,7 @@ song.channels.push(snare);
 song.channels.push(kick);
 
 var myclip = new Clip();
+song.clips.push(myclip);
 
 var snareSeq1 = new SequencerSequence([0,0,1,0, 0,0,1,0, 0,0,1,0, 1,0,0,0], 4);
 snareSeq1.channel = snare;
