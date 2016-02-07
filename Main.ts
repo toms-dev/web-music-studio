@@ -41,6 +41,8 @@ $("#play").click(() => {
 	song.play();
 });
 
+(<any> window).song = song;
+
 // Simulate a pause halfway
 /*setTimeout(() => {
 	console.log("Pausing");
