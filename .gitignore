@@ -52,7 +52,9 @@ server/node_modules
 
 public/js/model/**/*.js
 public/js/model/**/*.js.map
-public/js/model/Main.js
-public/js/model/Main.js.map
+public/js/Main.js
+public/js/Main.js.map
 
 **/node_modules
+
+typings
