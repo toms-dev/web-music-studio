@@ -1,6 +1,6 @@
 import ClipInstance from "./ClipInstance";
 import SongTime from "./SongTime";
-import SongTimeConverter from "./utils/SongTimeConverter";
+import SongTimeConverter from "utils/SongTimeConverter";
 import Clip from "./Clip";
 import Song from "./Song";
 
