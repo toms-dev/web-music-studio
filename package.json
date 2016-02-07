@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "web-music-studio-audio-core": "file:./model"
+    "web-music-studio-audio-core": "file:./model",
+    "web-music-studio-gui": "file:./gui",
+    "web-music-studio-server": "file:./server"
   },
   "devDependencies": {},
   "scripts": {
