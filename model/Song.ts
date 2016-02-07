@@ -31,7 +31,7 @@ export default class Song {
 
 	constructor() {
 		this.config = new SongConfig();
-		this.playlist = new Playlist();
+		this.playlist = new Playlist(this);
 		this.channels = [];
 		this.clips = [];
 		this.lastPauseElapsed = 0;
