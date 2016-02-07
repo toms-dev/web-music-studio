@@ -10,7 +10,7 @@ import Clip from "./Clip";
 export default class Song {
 
 	public name:string;
-	public user: User;
+	public author: User;
 	public playlist: Playlist;
 
 	public config: SongConfig;
@@ -30,6 +30,7 @@ export default class Song {
 	public clips: Clip[];
 
 	constructor() {
+		this.name = "DefaultSongName";
 		this.config = new SongConfig();
 		this.playlist = new Playlist(this);
 		this.channels = [];
@@ -114,7 +115,7 @@ export default class Song {
 	public toJSON(): any {
 		return {
 			name: this.name,
-			author: this.user.email,
+			author: this.author.email,
 			config: this.config.toJSON(),
 			playlist: this.playlist.toJSON(),
 			channels: this.channels.map((c: Channel) => { return c.toJSON();})

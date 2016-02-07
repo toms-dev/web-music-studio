@@ -17,9 +17,11 @@ abstract class Channel {
 			id = Channel.idAutoIncrement++;
 		}
 		this.id = id;
+		this.volume = 1;
+		this.panning = 0;
 	}
 
-// WebAudio Param
+	// WebAudio Param
 
 	setup(): void {
 		// TODO output = new AudioParam();
@@ -34,7 +36,8 @@ abstract class Channel {
 			volume: this.volume,
 			panning: this.panning,
 			// that's so ugly lol
-			concreteChannel: this.concreteToJSON()
+			concreteChannel: this.concreteToJSON(),
+			concreteChannelType: (<any> this.constructor).name
 		}
 	}
 
