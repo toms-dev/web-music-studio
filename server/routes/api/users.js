@@ -4,6 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var usersRequests = require('../../database/requests/users');
+var projectsRequests = require('../../database/requests/projects');
 
 /**
  * Create a user from a username and a password
@@ -44,6 +45,19 @@ router.get('/:username', function(req, res) {
         if (err) return res.send(err);
         if (!user) return res.sendStatus(404);
         res.send(user);
+    });
+});
+
+/**
+ * Get all projects from a contributor
+ * GET /?username
+ * request params :
+ *  - username
+ */
+router.get('/:username/projects', function(req, res) {
+    projectsRequests.query({contributors: req.params.username}, {}, function(err, projects) {
+        if (err) return res.send(err);
+        res.send(projects);
     });
 });
 
