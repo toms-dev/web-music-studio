@@ -2,6 +2,7 @@
 var db = require('../connection/connection');
 var Projects = require('../models/projectModel');
 var shortid = require('shortid');
+var maxComment = 5;
 
 exports.create = function(name, username, callback) {
     var project = new Projects({
@@ -65,7 +66,7 @@ exports.query = function(query, fields, callback) {
 };
 
 exports.findById = function(projectid, callback) {
-    Projects.findOne({_id: projectid}, function(err, project) {
+    Projects.findOne({_id: projectid}, {comments: {$slice: maxComment }}, function(err, project) {
         callback(err, project);
     });
 };
@@ -87,6 +88,7 @@ exports.addComment = function(projectid, comment, callback) {
             });
             if (user) {
                 comment._id = shortid.generate();
+                comment.createdAt = new Date();
                 Projects.update({_id: projectid}, {$push: {comments: comment}}, function (err, res) {
                     callback(err, res);
                 });
@@ -96,5 +98,13 @@ exports.addComment = function(projectid, comment, callback) {
         } else {
             callback({businessError: true, message: 'no project found with id '+projectid});
         }
+    });
+};
+
+
+exports.getComments = function(projectid, skip, limit, callback) {
+    console.log(limit);
+    Projects.findOne({_id: projectid}, {_id: 1, comments: {$slice: [skip, limit] }}, function(err, project) {
+        callback(err, project);
     });
 };
