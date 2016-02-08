@@ -7,7 +7,8 @@ var projectSchema = mongoose.Schema({
     createdAt: String,
     lastModifiedDate: String,
     lastModifiedUsername: String,
-    data: {}
+    data: {},
+    comments: []
 });
 
 module.exports = projectSchema;
