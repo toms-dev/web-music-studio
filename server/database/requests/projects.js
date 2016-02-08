@@ -5,7 +5,7 @@ var Projects = require('../models/projectModel');
 exports.create = function(name, username, callback) {
     var project = new Projects({
         name: name,
-        contributors: [username],
+        contributors: [{username:username, role:'fullaccess'}],
         createdAt: new Date(),
         lastModifiedDate: new Date(),
         lastModifiedUsername: username,
@@ -23,26 +23,37 @@ exports.delete = function(projectid, callback) {
     });
 };
 
-exports.addContributor = function(projectid, username, callback) {
+exports.addContributor = function(projectid, username, role, callback) {
     Projects.findOne({_id: projectid}, {contributors: 1}, function(err, project) {
-        if (project && project.contributors.indexOf(username) === -1) {
-            Projects.update({_id:projectid}, {$push: {contributors: username}}, function(err, res) {
-                callback(err, res);
+        if (project) {
+            var user = project.contributors.find(function(u) {
+                if (u.username === username) return u;
             });
-        } else {
-            callback({businessError: true, message: 'contributor is already associated with this project'});
+            if (!user) {
+                Projects.update({_id: projectid}, {$push: {contributors: {username: username, role: role}}}, function (err, res) {
+                    callback(err, res);
+                });
+            } else {
+                callback({businessError: true, message: 'contributor is already associated with this project'});
+            }
         }
     });
 };
 
 exports.removeContributor = function(projectid, username, callback) {
     Projects.findOne({_id: projectid}, {contributors: 1}, function(err, project) {
-        if (project && project.contributors.indexOf(username) === -1) {
-            return callback({businessError: true, message: 'no contributor with name '+username+' found in this project'});
+        if (project) {
+            var user = project.contributors.find(function(u) {
+                if (u.username === username) return u;
+            });
+            if (!user) {
+                return callback({businessError: true, message: 'no contributor with name '+username+' found in this project'});
+            } else {
+                Projects.update({_id:projectid}, {$pull: {contributors: { $elemMatch: { username: username }}}}, function(err, res) {
+                    callback(err, res);
+                });
+            }
         }
-        Projects.update({_id:projectid}, {$pull: {contributors: username}}, function(err, res) {
-            callback(err, res);
-        });
     });
 };
 
