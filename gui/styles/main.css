@@ -1,3 +1,7 @@
+#login {
+    display: none;
+}
+
 * {
     box-sizing: border-box;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -266,6 +270,20 @@ button:hover {
     background: #3d3d3d;
 }
 
+#playlist .lanes .lane .cell .clip-instance {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+    float: left;
+    vertical-align: middle;
+    text-align: center;
+
+    background: #FF6A00;
+
+    line-height: 99px;
+
+    font-size: 14px;
+}
 
 .modal {
     position: fixed;

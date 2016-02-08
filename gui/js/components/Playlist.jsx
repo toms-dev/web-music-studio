@@ -9,7 +9,7 @@ module.exports = React.createClass({
         return (
             <div id="playlist">
                 <Header/>
-                <LaneList/>
+                <LaneList song={this.props.song}/>
             </div>
         );
     }

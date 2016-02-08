@@ -1,8 +1,11 @@
 import React from 'react';
 
-import Button from './Header/Button.jsx';
-
 module.exports = React.createClass({
+
+    playSong: function() {
+        console.log("Playing");
+        this.props.song.play();
+    },
 
     render: function() {
         return (
@@ -12,8 +15,8 @@ module.exports = React.createClass({
                     <input type="text"/>
                 </div>
                 <div id="music-controls">
-                    <Button>Play</Button>
-                    <Button>Stop</Button>
+                    <button onClick={this.playSong}>Play</button>
+                    <button>Stop</button>
                 </div>
             </div>
         );
