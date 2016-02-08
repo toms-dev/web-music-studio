@@ -18,8 +18,8 @@ module.exports = React.createClass({
         var self = this;
         var cells = this.state.cells.map((c, i) => {
            return (i%2 === 0)?
-               (<CellClip cellId={self.props.index}/>):
-               (<CellClip cellId={self.props.index} alt="true"/>);
+               (<CellClip song={this.props.song} laneId={self.props.index} cellId={i}/>):
+               (<CellClip song={this.props.song} laneId={self.props.index} cellId={i} alt="true"/>);
         });
 
         return (

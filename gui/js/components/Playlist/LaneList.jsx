@@ -14,7 +14,7 @@ module.exports = React.createClass({
     render: function() {
         var lanes = this.state.lanes.map((l, i) => {
             return (
-              <Lane index={i}/>
+              <Lane song={this.props.song} index={i}/>
             );
         });
 

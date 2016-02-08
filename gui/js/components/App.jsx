@@ -46,7 +46,7 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div>
-                <Header/>
+                <Header song={this.state.song}/>
                 <div id="app-body">
                     <Sequencer song={this.state.song}/>
                     <Playlist  song={this.state.song}/>

@@ -5,6 +5,52 @@
 
         <link rel="stylesheet" href="styles/main.css">
 		<script src="js/lib/jquery.min.js"></script>
+
+		<script>
+			var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+			var channel = audioCtx.createAnalyser();
+			channel.connect(audioCtx.destination);
+
+			function getSoundInstance(soundUrl) {
+				console.debug("GETTING SOUND INSTANCE!!!");
+				var source = audioCtx.createBufferSource();
+				source.connect(channel);
+
+				var request = new XMLHttpRequest();
+
+				request.open('GET', soundUrl, true);
+
+				request.responseType = 'arraybuffer';
+
+				request.onload = function() {
+					var audioData = request.response;
+					console.debug("LOADED!!");
+					console.log("SoundURL=" + soundUrl);
+					console.log("Audio data:", audioData);
+					audioCtx.decodeAudioData(audioData,
+							function(buffer) {
+								var myBuffer = buffer;
+								var songLength = buffer.duration;
+								source.buffer = myBuffer;
+								//source.playbackRate.value = playbackControl.value;
+
+								//channel.connect(audioCtx.destination);
+								source.connect(audioCtx.destination);
+								//source.loop = true;
+
+								//loopstartControl.setAttribute('max', Math.floor(songLength));
+								//loopendControl.setAttribute('max', Math.floor(songLength));
+							},
+							function(e) {"Error with decoding audio data" + e.err}
+					);
+				};
+
+				request.send();
+
+				return source;
+			}
+		</script>
     </head>
     <body>
 		<div id="login" class="overlay">
