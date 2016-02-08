@@ -12,9 +12,9 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var lanes = this.state.lanes.map((l) => {
+        var lanes = this.state.lanes.map((l, i) => {
             return (
-              <Lane/>
+              <Lane index={i}/>
             );
         });
 
