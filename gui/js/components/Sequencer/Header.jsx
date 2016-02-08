@@ -49,6 +49,8 @@ module.exports = React.createClass({
         var activeClip = this.refs["active-clip"];
 
         this.props.song.currentClip = this.props.song.clips[activeClip.value];
+		console.log("New active clip: ", activeClip.value);
+		window.react.state.song.currentClip = this.props.song.clips[activeClip.value];
 
         Context.notifyAll();
     },

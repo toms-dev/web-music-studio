@@ -57,7 +57,8 @@ button:hover {
 }
 
 #header #bpm {
-    display: block;
+    /*display: block;*/
+    display: none;
     float: left;
     height: 100%;
     width: 50px;
@@ -74,6 +75,11 @@ button:hover {
 
 #header #music-controls {
     display: block;
+}
+
+#header #music-controls > * {
+    margin: 1em;
+    padding: 1em;
 }
 
 #app-body {

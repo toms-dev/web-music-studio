@@ -39,6 +39,8 @@ module.exports = React.createClass({
 					song = Song.Song.fromJSON(data.data);
 					song.channels[0].name = "Snare";
 					song.channels[1].name = "Kick";
+					song.channels[2].name = "Hi-hat";
+					song.channels[3].name = "Closed Hi-hat";
 				}
 				else {
 					song = new Song.Song();
@@ -48,13 +50,21 @@ module.exports = React.createClass({
 
 					var s1 = new Song.Sample("sounds/snare.wav");
 					var s2 = new Song.Sample("sounds/kick3.wav");
+					var s3 = new Song.Sample("sounds/hihat.wav");
+					var s4 = new Song.Sample("sounds/closed.wav");
 
 					s1.name = "Snare";
 					s2.name = "Kick";
+					s3.name = "Hi-hat";
+					s4.name = "Closed Hi-hat";
 
 					song.channels.push(s1);
 					song.channels.push(s2);
+					song.channels.push(s3);
+					song.channels.push(s4);
 				}
+				self.state.song.currentClip = self.state.song.clips[0];
+
 				console.log("Song update!!!!!!!", song);
 				self.setState({
 					song: song
@@ -64,14 +74,19 @@ module.exports = React.createClass({
 			});
 
 			socket.on('message-broadcast', function (data) {
+				var curr = self.state.song.currentClip;
 				console.log("State broadcast", data);
 				var song;
 
 				song = Song.Song.fromJSON(data.data);
 				song.channels[0].name = "Snare";
 				song.channels[1].name = "Kick";
+				song.channels[2].name = "Hi-hat";
+				song.channels[3].name = "Closed hi-hat";
 
 				console.log("Song update!!!!!!!", song);
+
+				song.currentClip = curr;
 				self.setState({
 					song: song
 				});
@@ -81,19 +96,6 @@ module.exports = React.createClass({
 		});
 
 		var song = this.state.song;
-
-		var s1 = new Song.Sample("sounds/snare.wav");
-		var s2 = new Song.Sample("sounds/kick3.wav");
-
-		s1.name = "Snare";
-		s2.name = "Kick";
-
-		song.channels.push(s1);
-		song.channels.push(s2);
-
-		//this.state.song.clips.push(new Song.Clip("Derp"));
-		this.state.song.currentClip = this.state.song.clips[0];
-
 
 		this.setState({
 			song: this.state.song
@@ -116,6 +118,10 @@ module.exports = React.createClass({
     },
 
     render: function() {
+		if (window.react.state.song.currentClip == undefined) {
+			var clip = window.react.state.song.currentClip;
+			this.state.song.currentClip = clip;
+		}
         return (
             <div>
                 <Header song={this.state.song}/>
