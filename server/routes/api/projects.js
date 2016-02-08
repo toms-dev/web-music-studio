@@ -123,6 +123,21 @@ router.delete('/:id/contributors/:username', function(req, res) {
     });
 });
 
+/**
+ * Add a comment to a project
+ * POST /:id/comments
+ * request params :
+ *  - id (projectid)
+ * body :
+ *  - comment (need a comment.username which is the author of the comment and he must be a contributor)
+ */
+router.post('/:id/comments', function(req, res) {
+    projectsRequests.addComment(req.params.id, req.body.comment, function(err, response) {
+        if (err) return res.send(err);
+        res.send(response);
+    });
+});
+
 
 
 module.exports = router;

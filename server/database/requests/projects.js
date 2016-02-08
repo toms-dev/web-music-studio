@@ -1,6 +1,7 @@
 'use strict';
 var db = require('../connection/connection');
 var Projects = require('../models/projectModel');
+var shortid = require('shortid');
 
 exports.create = function(name, username, callback) {
     var project = new Projects({
@@ -72,5 +73,28 @@ exports.findById = function(projectid, callback) {
 exports.save = function(projectid, username, data, callback) {
     Projects.update({_id:projectid}, {data: data, lastModifiedDate: new Date(), lastModifiedUsername: username}, function(err, res) {
         callback(err, res);
+    });
+};
+
+/**
+ * here comment should contain a comment.username property. The user needs to be a contributor.
+ */
+exports.addComment = function(projectid, comment, callback) {
+    Projects.findOne({_id: projectid}, function(err, project) {
+        if (project) {
+            var user = project.contributors.find(function(u) {
+                if (u.username === comment.username) return u;
+            });
+            if (user) {
+                comment._id = shortid.generate();
+                Projects.update({_id: projectid}, {$push: {comments: comment}}, function (err, res) {
+                    callback(err, res);
+                });
+            } else {
+                callback({businessError: true, message: 'unhautorized on this project'});
+            }
+        } else {
+            callback({businessError: true, message: 'no project found with id '+projectid});
+        }
     });
 };
