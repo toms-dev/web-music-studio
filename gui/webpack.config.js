@@ -12,6 +12,7 @@ module.exports = {
         port: 3333,
 		headers: { "Access-Control-Allow-Origin": "*" }
     },
+	devtool: "#inline-source-map",
     resolve: {
         extensions: [
             "",
