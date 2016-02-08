@@ -3,6 +3,7 @@ import Clip from "./Clip";
 import SongConfig from "./SongConfig";
 import SongTimeConverter from "./utils/SongTimeConverter";
 import SongTime from "./SongTime";
+import Song from "./Song";
 
 class ClipInstance {
 
@@ -65,6 +66,21 @@ class ClipInstance {
 		console.groupEnd();
 	}
 
+	toJSON(): any {
+		return {
+			clipID: this.clip.id,
+			startStep: this.startStep,
+			length: this.length
+		}
+	}
+
+	static fromJSON(json: any, song: Song): ClipInstance {
+		var instance = new ClipInstance(null, 0);
+		instance.clip = song.getClip(json.clipID);
+		instance.startStep = json.startStep;
+		instance.length = json.length;
+		return instance;
+	}
 }
 
 export default ClipInstance;

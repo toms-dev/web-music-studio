@@ -21,4 +21,17 @@ export default class SampleChannel extends Channel {
 	interrupt(): void {
 	}
 
+	concreteToJSON(): any {
+		return {
+			filePath: this.filePath
+		};
+	}
+
+	static fromJSON(json: any): any {
+		var sample = new SampleChannel(null);
+		sample.filePath = json.filePath;
+		return sample;
+	}
 }
+
+Channel.concreteClasses["SampleChannel"] = SampleChannel;

@@ -4,11 +4,13 @@ import Playlist from "./Playlist";
 import SongConfig from "./SongConfig";
 import SongTimeConverter from "./utils/SongTimeConverter";
 import SongTime from "./SongTime";
+import Channel from "./Channel";
+import Clip from "./Clip";
 
 export default class Song {
 
 	public name:string;
-	public user: User;
+	public author: User;
 	public playlist: Playlist;
 
 	public config: SongConfig;
@@ -24,13 +26,42 @@ export default class Song {
 	private lastPauseElapsed: number;
 	private lastUpdate: number;
 
+	public channels: Channel[];
+	public clips: Clip[];
+
 	constructor() {
+		this.name = "DefaultSongName";
 		this.config = new SongConfig();
-		this.playlist = new Playlist();
+		this.playlist = new Playlist(this);
+		this.channels = [];
+		this.clips = [];
 		this.lastPauseElapsed = 0;
 
 		this.setupDefaultConfig();
 	}
+
+	getChannel(channelID: number): Channel {
+		for (var i in this.channels) {
+			if (! this.channels.hasOwnProperty(i)) continue;
+			var channel = this.channels[i];
+			if (channel.id == channelID) {
+				return channel;
+			}
+		}
+		return null;
+	}
+
+	getClip(clipID: number): Clip {
+		for (var i in this.clips) {
+			if (! this.clips.hasOwnProperty(i)) continue;
+			var clip = this.clips[i];
+			if (clip.id == clipID) {
+				return clip;
+			}
+		}
+		return null;
+	}
+
 
 	private setupDefaultConfig(): void {
 		this.config.bpm = 128;
@@ -79,6 +110,33 @@ export default class Song {
 
 	private schedule(songTime: SongTime, lookaheadDuration: SongTime): void {
 		this.playlist.schedule(songTime, lookaheadDuration);
+	}
+
+	public toJSON(): any {
+		return {
+			name: this.name,
+			author: this.author.email,
+			config: this.config.toJSON(),
+			playlist: this.playlist.toJSON(),
+			channels: this.channels.map((c: Channel) => { return c.toJSON();}),
+			clips: this.clips.map((c: Clip) => { return c.toJSON()})
+		}
+	}
+
+	public static fromJSON(json: any): Song {
+		var song = new Song();
+		song.name = json.name;
+
+		var author = new User();
+		author.email = json.author;
+
+		song.config = SongConfig.fromJSON(json.config);
+		// The order of parsing is important in order to hydrate from IDs onward! ;)
+		song.channels = json.channels.map((channelData: any) => { return Channel.fromJSON(channelData)});
+		song.clips = json.clips.map((clipData: any) => { return Clip.fromJSON(clipData, song)});
+		song.playlist = Playlist.fromJSON(json.playlist, song);
+
+		return song;
 	}
 
 }
