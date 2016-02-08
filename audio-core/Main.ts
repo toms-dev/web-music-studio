@@ -8,6 +8,7 @@ import Clip from "./lib/Clip";
 import SequencerSequence from "./lib/sequences/SequencerSequence";
 import Sample from "./lib/channels/SampleChannel";
 import User from "./lib/User";
+import {createProject} from "./lib/network/SongAPI";
 
 var song = new Song();
 
@@ -58,3 +59,5 @@ $("#play").click(() => {
 	}, 2500)
 }, 2500);
 */
+
+createProject(null, null);

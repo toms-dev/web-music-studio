@@ -2,6 +2,8 @@
   "dependencies": {},
   "devDependencies": {},
   "ambientDependencies": {
-    "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#cf2a968f0edd7d30773f7d23fe3708fa029d5ab7"
+    "jquery": "github:DefinitelyTyped/DefinitelyTyped/jquery/jquery.d.ts#cf2a968f0edd7d30773f7d23fe3708fa029d5ab7",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#aee0039a2d6686ec78352125010ebb38a7a7d743",
+    "superagent": "github:DefinitelyTyped/DefinitelyTyped/superagent/superagent.d.ts#b30dbc4dd32b3237cd78e9139c3fc270caaacacb"
   }
 }

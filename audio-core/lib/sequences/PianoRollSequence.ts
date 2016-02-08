@@ -1,10 +1,14 @@
 
 import ClipSequence from "../ClipSequence";
-import PianoRollSequence from "./";
+import SongTime from "../SongTime";
 
 export default class PianoRollSequence extends ClipSequence {
 
-	play(startDelay: number): void {
+	play(start: SongTime, end: SongTime, startDelay: SongTime): void {
+	}
+
+	concreteToJSON(): any {
+		return undefined;
 	}
 
 }

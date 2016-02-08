@@ -2,42 +2,18 @@
  * Created by Louis on 21/01/2016.
  */
 import React from 'react';
-import  ReactDOM from 'react-dom';
-import Channel from './Channel';
-import ClipButton from './ClipButton';
 
-var NB_CHAN = require('NB_CHAN');
-var channels = [];
+import Header from './Sequencer/Header.jsx'
+import ChannelList from './Sequencer/ChannelList.jsx'
 
-class Sequencer extends React.Component {
-    render() {
-            console.log("CC SI JE RENTRE 2 FOIS ICI ALORS JE PEUX PAS INIT LES CHANNELS :D")
-            let nb_chan = this.props.nb_chan;
-            for (var i = 0; i < nb_chan - 1; i++) {
-                console.log(i);
-                channels.push(React.createElement(Channel, {key: i}))
-            }
-            channels.push(React.createElement(ClipButton))
-            console.log(channels)
-            return <div id={this.props.id}>{channels}</div>;
+module.exports = React.createClass({
 
+    render: function() {
+        return (
+            <div id="sequencer">
+                <Header/>
+                <ChannelList/>
+            </div>
+        );
     }
-
-    addChannel(index) {
-    }
-}
-
-Sequencer.propTypes = {
-    nb_chan: React.PropTypes.number.isRequired
-}
-
-Sequencer.defaultProps = {
-    id: "sequencer",
-    nb_chan: NB_CHAN
-}
-
-ReactDOM.render(
-    <Sequencer/>, document.getElementById('sequencer')
-)
-
-export default Sequencer
+});
