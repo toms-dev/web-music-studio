@@ -19,7 +19,7 @@ module.exports = React.createClass({
         if(clip) {
             channels = clip.sequences.map((c) => {
                 return (
-                    <Channel/>
+                    <Channel channel={c}/>
                 );
             });
         }

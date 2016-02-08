@@ -181,7 +181,19 @@ button:hover {
     background: #353535;
 }
 
+.toggle.on {
+    background: #FF6A00;
+}
+.toggle.alt.on {
+    background: #FF7800;
+}
 
+.toggle.on:hover {
+    background: #FF7800;
+}
+.toggle.alt.on:hover {
+    background: #FF8000;
+}
 
 #playlist {
     display: block;

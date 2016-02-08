@@ -25,8 +25,14 @@ module.exports = React.createClass({
 
         var song = this.state.song;
 
-        song.channels.push(new Song.Sample("sounds/snare.wav"));
-        song.channels.push(new Song.Sample("sounds/kick3.wav"));
+        var s1 = new Song.Sample("sounds/snare.wav");
+        var s2 = new Song.Sample("sounds/kick3.wav");
+
+        s1.name = "Snare";
+        s2.name = "Kick";
+
+        song.channels.push(s1);
+        song.channels.push(s2);
 
         //this.state.song.clips.push(new Song.Clip("Derp"));
         this.state.song.currentClip = this.state.song.clips[0];
