@@ -19,19 +19,20 @@ module.exports = React.createClass({
             s.push(this.refs["toggle-"+x].getState()?1:0);
         }
 
-        console.log(s);
-
         this.props.channel.sequence = s;
 
         Context.notifyAll();
     },
 
     render: function() {
+        console.log("Sequence: ", this.props.channel.sequence);
+
         var self = this;
-        var sequence = this.state.sequence.map((s, i) => {
+        var sequence = this.props.channel.sequence.map((t, i) => {
+            var on = t?true:false;
             return ((i/4)%2 < 1)?
-                (<Toggle ref={"toggle-"+i} callback={self.updateSequence}/>):
-                (<Toggle ref={"toggle-"+i} callback={self.updateSequence}/>);
+                (<Toggle ref={"toggle-"+i} callback={self.updateSequence} on={on}/>):
+                (<Toggle ref={"toggle-"+i} callback={self.updateSequence} on={on}/>);
         });
 
 
