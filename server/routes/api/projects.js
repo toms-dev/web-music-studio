@@ -23,12 +23,21 @@ router.post('/', function(req, res) {
 /**
  * List all the registered projects
  * GET /
+ * filter:
+ *  - ?username=username
  */
 router.get('/', function(req, res) {
-	// TODO: filter by users
 	var query = {};
     projectsRequests.query(query, function(err, projects) {
         if (err) return res.send(err);
+        if (req.query.username) {
+            projects = projects.filter(function(project) {
+                var user = project.contributors.find(function(u) {
+                    if (u.username === req.query.username) return u;
+                });
+                return user !== undefined;
+            });
+        }
         res.send(projects);
     });
 });
