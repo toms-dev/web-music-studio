@@ -4,8 +4,23 @@
         <meta charset="UTF-8">
 
         <link rel="stylesheet" href="styles/main.css">
+		<script src="js/lib/jquery.min.js"></script>
     </head>
     <body>
+		<div id="login" class="overlay">
+			<div class="overlay-content">
+				<h1>Sign in</h1>
+				<div>
+					<input type="text" id="email" placeholder="Email" />
+				</div>
+				<div>
+					<input type="password" id="password" placeholder="Password" />
+				</div>
+				<div>
+					<button id="signIn">Sign in</button> <button id="signUp">Sign up</button>
+				</div>
+			</div>
+		</div>
         <div id="app"></div>
 
         <script src="js/index.js"></script>

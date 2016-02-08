@@ -61,6 +61,13 @@ router.get('/:username/projects', function(req, res) {
     });
 });
 
+router.post('/auth', function(req, res) {
+	usersRequests.userExists(req.body.username, req.body.password, function(exists) {
+		console.log("User exists response:", exists);
+		res.send({userExists: exists});
+	})
+});
+
 /**
  * Delete a user by username
  * DELETE /?username
@@ -69,7 +76,7 @@ router.get('/:username/projects', function(req, res) {
  */
 router.delete('/:username', function(req, res) {
     usersRequests.deleteByUsername(req.params.username, function(err, user) {
-        if (err) return res.sned(err);
+        if (err) return res.send(err);
         if (!user) return res.sendStatus(404);
         res.send(user);
     })

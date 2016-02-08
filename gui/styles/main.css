@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 97.5%;
 }
 
 html {
@@ -315,4 +317,27 @@ button:hover {
 
 .modal button:hover {
     background: #3c3c3c;
+}
+
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index:10;
+    background-color: rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.overlay-content {
+    display: inline-block;
+    border: 1px solid #4f4f4f;
+    background-color: #2e2e2e;
+    color: whitesmoke;
+    padding: 1em;
+    margin-top: 2em;
+}
+
+.overlay-content > div {
+    margin: 1em;
 }
