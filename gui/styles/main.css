@@ -24,6 +24,20 @@ body {
     height: 100%;
 }
 
+button {
+    border-radius: 0;
+    border: 1px solid #111111;
+
+    background: #222222;
+    color: #eeeeee;
+
+    padding: 2px;
+}
+
+button:hover {
+    background: #282828;
+}
+
 #header {
     position: absolute;
     top: 0;
@@ -169,7 +183,19 @@ body {
     background: #353535;
 }
 
+.toggle.on {
+    background: #FF6A00;
+}
+.toggle.alt.on {
+    background: #FF7800;
+}
 
+.toggle.on:hover {
+    background: #FF7800;
+}
+.toggle.alt.on:hover {
+    background: #FF8000;
+}
 
 #playlist {
     display: block;
@@ -239,6 +265,60 @@ body {
 #playlist .lanes .lane .cell.alt:hover {
     background: #3d3d3d;
 }
+
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+
+    background: #444444;
+    border: 1px solid #111111;
+
+    padding:  10px 30px;
+
+    display: none;
+}
+
+.modal.visible {
+    display: block;
+}
+
+.modal h1 {
+    margin: 3px 0;
+    padding: 0;
+    font-size: 16px;
+}
+
+.modal input {
+    border-radius: 0;
+    border: 1px solid #111111;
+
+    background: #aaaaaa;
+
+    margin: 10px 0;
+
+    color: #000000;
+
+    padding: 2px;
+}
+
+.modal .buttons {
+    margin: auto;
+    text-align: center;
+}
+
+.modal button {
+    background: #333333;
+
+    margin: 0 5px;
+}
+
+.modal button:hover {
+    background: #3c3c3c;
+}
+
 
 .overlay {
     position: fixed;

@@ -4,7 +4,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import {SongAPI} from 'web-music-studio-audio-core';
+
 
 import App from './components/App';
 import * as UserManagement from './service/UserManagement';
@@ -38,5 +38,3 @@ $("#signIn").click(() => {
 		}
 	)
 });
-
-//SongAPI.createProject(null, null);

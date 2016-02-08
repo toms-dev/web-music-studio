@@ -13,11 +13,17 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var channels = this.state.channels.map((c) => {
-            return (
-                <Channel/>
-            );
-        });
+        var clip = this.props.song.currentClip;
+
+        var channels = [];
+        if(clip) {
+            channels = clip.sequences.map((c) => {
+                return (
+                    <Channel channel={c}/>
+                );
+            });
+        }
+
         return (
             <div className="channel-list">
                 {channels}
