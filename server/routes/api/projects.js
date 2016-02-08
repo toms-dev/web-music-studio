@@ -3,7 +3,12 @@
  */
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
 var projectsRequests = require('../../database/requests/projects');
+
+router.use(
+	bodyParser.json()
+);
 
 /**
  * Create a project from a name and a username
@@ -14,7 +19,8 @@ var projectsRequests = require('../../database/requests/projects');
  */
 router.post('/', function(req, res) {
     if (!req.body.name || !req.body.username) return res.sendStatus(400);
-    projectsRequests.create(req.body.name, req.body.username, function(err, project) {
+	console.log("BODY:", req.body);
+    projectsRequests.create(req.body.name, req.body.username, null, function(err, project) {
         if (err) return res.send(err);
         res.send(project);
     });

@@ -11,7 +11,10 @@ export function createProject(username: string, userID: string, name: string, ca
 	var song = new Song();
 	song.author = new User();
 	song.author.username = username;
+
 	songData.data = song.toJSON();
+
+	console.log("Creating project: ",songData);
 
 	$.post(
 		"http://localhost:3000/api/projects/",

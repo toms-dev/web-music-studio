@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import * as UserManagement from './service/UserManagement';
 import * as ProjectManagement from './service/ProjectManagement';
+import {Song} from "web-music-studio-audio-core";
 
 ReactDOM.render((
     <App/>
@@ -62,6 +63,13 @@ function refreshProjectList() {
 		projects.forEach((p) => {
 			var $el = $("<li>");
 			$el.text(p.name);
+			$el.click(() => {
+				console.log("PROJECT DATA:", p);
+				//var song = Song.fromJSON(p.data);
+				//console.log("Deserialized song:", song);
+				window.react.loadProject(p._id);
+				$("#projects-list-window").fadeOut(100);
+			});
 			$content.append($el);
 		});
 

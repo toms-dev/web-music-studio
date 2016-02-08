@@ -131,6 +131,7 @@ export default class Song {
 
 		var author = new User();
 		author.email = json.author;
+		song.author = author;
 
 		song.config = SongConfig.fromJSON(json.config);
 		// The order of parsing is important in order to hydrate from IDs onward! ;)

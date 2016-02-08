@@ -2,14 +2,15 @@
 var db = require('../connection/connection');
 var Projects = require('../models/projectModel');
 
-exports.create = function(name, username, callback) {
+exports.create = function(name, username, data, callback) {
+	console.log("Data=", data);
     var project = new Projects({
         name: name,
         contributors: [{username:username, role:'fullaccess'}],
         createdAt: new Date(),
         lastModifiedDate: new Date(),
         lastModifiedUsername: username,
-        data: {}
+        data: data
     });
 
     project.save(function(err, project) {
