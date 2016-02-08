@@ -59,6 +59,17 @@ router.delete('/:id', function(req, res) {
     })
 });
 
+/**
+ *
+ */
+router.put('/:id', function(req, res) {
+    if (!req.body.username || !req.body.data) return res.sendStatus(400);
+    projectsRequests.save(req.params.id, req.body.username, req.body.data, function(err, response) {
+        if (err) return res.send(err);
+        res.send(response);
+    });
+});
+
 
 /**
  * Add a contributor to a project
@@ -75,5 +86,7 @@ router.post('/:id/contributors', function(req, res) {
         res.send(response);
     });
 });
+
+
 
 module.exports = router;
