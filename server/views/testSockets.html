@@ -13,7 +13,7 @@
         });
 
         var save = function() {
-            socket.emit('update', { my: 'data' });
+            socket.emit('update', { projectid: 'idd', data: {my: 'data'} });
         };
     </script>
 </head>
