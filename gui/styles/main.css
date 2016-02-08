@@ -155,10 +155,21 @@ body {
     background: #2e2e2e;
 }
 
+.toggle.alt {
+    background: #313131;
+}
+
+.toggle:hover {
+    background: #313131;
+}
+
+.toggle.alt:hover {
+    background: #353535;
+}
+
 
 
 #playlist {
-    /*box-sizing: border-box;*/
     display: block;
     height: 100%;
     width: calc(100% - 610px);
@@ -167,4 +178,62 @@ body {
     margin-left: 10px;
 }
 
+#playlist .counter-header {
+    display: block;
+    height: 30px;
+    overflow-y: visible;
+    white-space: nowrap;
+}
 
+#playlist .counter-header .cell {
+    display: inline-block;
+    height: 100%;
+    width: 100px;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+
+    text-align: center;
+    line-height: 30px;
+    vertical-align: middle;
+
+    color: #585858;
+    background: #2e2e2e;
+}
+
+#playlist .counter-header .cell.alt {
+    background: #303030;
+}
+
+#playlist .lanes {
+    overflow-x: scroll;
+    height: 100%;
+}
+
+#playlist .lanes .lane {
+    display: block;
+    height: 100px;
+    overflow-y: visible;
+    white-space: nowrap;
+}
+
+#playlist .lanes .lane .cell {
+    display: inline-block;
+    height: 100%;
+    width: 100px;
+    border-right: 1px solid #111111;
+    border-bottom: 1px solid #111111;
+
+    background: #333333;
+}
+
+#playlist .lanes .lane .cell.alt {
+    background: #383838;
+}
+
+#playlist .lanes .lane .cell:hover {
+    background: #383838;
+}
+
+#playlist .lanes .lane .cell.alt:hover {
+    background: #3d3d3d;
+}

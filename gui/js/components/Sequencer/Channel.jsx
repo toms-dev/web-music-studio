@@ -12,10 +12,10 @@ module.exports = React.createClass({
     },
 
     render: function() {
-        var sequence = this.state.sequence.map((s) => {
-            return (
-                <Toggle/>
-            );
+        var sequence = this.state.sequence.map((s, i) => {
+            return ((i/4)%2 < 1)?
+                (<Toggle/>):
+                (<Toggle alt="true"/>);
         });
         return (
             <div className="channel">
