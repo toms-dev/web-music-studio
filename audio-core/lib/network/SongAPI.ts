@@ -5,7 +5,7 @@ import Song from "../Song";
 
 export function createProject(song: Song, callback: (err: any, projectID: number) => void): void {
 	request
-		.post("/projects/")
+		.post("/api/projects/")
 		.end((err: any, res: any) => {
 			console.log("got response!", err, res);
 		})

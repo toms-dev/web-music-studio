@@ -68,9 +68,9 @@ export default class Playlist {
 		return clips;
 	}
 
-	addClip(clipID: number, startStep: number): void {
+	addClip(clipID: number, startStep: number, laneID: number): void {
 		var clip = this.song.getClip(clipID);
-		var instance = new ClipInstance(clip, 4);
+		var instance = new ClipInstance(clip, 4, laneID);
 		instance.startStep = startStep;
 		this.clips.push(instance)
 	}

@@ -12,15 +12,18 @@ class ClipInstance {
 	public startStep: number;
 	public length: number;
 
+	public laneID: number;
+
 	public scheduled: boolean;
 	public localScheduledStep: number;
 
 	public truncStart: number;
 	public truncEnd: number;
 
-	constructor(clip: Clip, length: number) {
+	constructor(clip: Clip, length: number, laneID: number) {
 		this.clip = clip;
 		this.length = length;
+		this.laneID = laneID;
 		this.scheduled = false;
 		this.localScheduledStep = 0;
 	}
@@ -70,15 +73,17 @@ class ClipInstance {
 		return {
 			clipID: this.clip.id,
 			startStep: this.startStep,
-			length: this.length
+			length: this.length,
+			laneID: this.laneID
 		}
 	}
 
 	static fromJSON(json: any, song: Song): ClipInstance {
-		var instance = new ClipInstance(null, 0);
+		var instance = new ClipInstance(null, 0, 0);
 		instance.clip = song.getClip(json.clipID);
 		instance.startStep = json.startStep;
 		instance.length = json.length;
+		instance.laneID = json.laneID;
 		return instance;
 	}
 }
