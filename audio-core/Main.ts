@@ -1,12 +1,13 @@
 
-import SongConfig from "./model/SongConfig";
+import SongConfig from "./lib/SongConfig";
 console.log("Hello world!");
 
-import Song from "./model/Song";
-import ClipInstance from "./model/ClipInstance";
-import Clip from "./model/Clip";
-import SequencerSequence from "./model/sequences/SequencerSequence";
-import Sample from "./model/channels/SampleChannel";
+import Song from "./lib/Song";
+import ClipInstance from "./lib/ClipInstance";
+import Clip from "./lib/Clip";
+import SequencerSequence from "./lib/sequences/SequencerSequence";
+import Sample from "./lib/channels/SampleChannel";
+import User from "./lib/User";
 
 var song = new Song();
 
@@ -36,6 +37,10 @@ song.playlist.addClip(myclip.id, 8);
 song.playlist.addClip(myclip.id, 12);
 song.playlist.addClip(myclip.id, 16);
 
+// Set the author of the song
+var author = new User();
+author.email = "derp@tderp.com";
+song.author = author;
 
 $("#play").click(() => {
 	song.play();

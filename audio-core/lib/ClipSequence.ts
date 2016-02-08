@@ -1,6 +1,7 @@
 import Clip from "./Clip";
 import Channel from "./Channel";
 import SongTime from "./SongTime";
+import Song from "./Song";
 /**
  * This is the rythmic content of a clip for one given instrument
  */
@@ -11,6 +12,8 @@ abstract class ClipSequence {
 	 */
 	public clip: Clip;
 	public channel: Channel;
+
+	public static concreteClasses: {[name: string]: any} = {};
 
 	abstract play(start: SongTime, end: SongTime, startDelay: SongTime): void;
 
@@ -23,6 +26,18 @@ abstract class ClipSequence {
 	}
 
 	abstract concreteToJSON(): any ;
+
+	static fromJSON(json: any, song: Song): ClipSequence {
+		// Get the class
+		var clipSequenceType = ClipSequence.concreteClasses[json.clipSequenceType];
+		// Call the static method
+		var clipSeq = clipSequenceType.fromJSON(json.concreteSequenceData);
+		clipSeq.channel = song.getChannel(json.channelID);
+		console.log("Got channel("+json.channelID+"):", clipSeq.channel);
+		console.log("Available channels:", song.channels);
+
+		return clipSeq;
+	}
 }
 
 export default ClipSequence;

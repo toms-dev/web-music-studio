@@ -80,4 +80,10 @@ export default class Playlist {
 			clipsInstances: this.clips.map((c: ClipInstance) => {return c.toJSON();})
 		}
 	}
+
+	static fromJSON(json: any, song: Song): Playlist {
+		var playlist = new Playlist(song);
+		playlist.clips = json.clipsInstances.map((clipInstanceData: any) => { return ClipInstance.fromJSON(clipInstanceData, song)});
+		return playlist;
+	}
 }

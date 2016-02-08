@@ -1,5 +1,6 @@
 
 import ClipSequence from "./ClipSequence";
+import Song from "./Song";
 
 export default class Clip {
 
@@ -17,5 +18,13 @@ export default class Clip {
 		return {
 			sequences: this.sequences.map((s: ClipSequence) => { return s.toJSON()})
 		}
+	}
+
+	static fromJSON(json: any, song: Song): Clip {
+		var clip = new Clip();
+
+		clip.sequences = json.sequences.map((seqData: any) => { return ClipSequence.fromJSON(seqData, song)});
+
+		return clip;
 	}
 }

@@ -50,8 +50,8 @@ crashlytics-build.properties
 
 server/node_modules
 
-public/js/model/**/*.js
-public/js/model/**/*.js.map
+public/js/audio-core/**/*.js
+public/js/audio-core/**/*.js.map
 public/js/Main.js
 public/js/Main.js.map
 

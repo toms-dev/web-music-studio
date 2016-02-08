@@ -1,11 +1,25 @@
 {
   "name": "web-music-studio",
-  "version": "0.0.1",
-  "devDependencies": {
-    "typescript": "^1.7.5",
-    "typings": "^0.6.6"
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "//": {
+    "web-music-studio-audio-core": "file:./audio-core",
+    "web-music-studio-gui": "file:./gui",
+    "web-music-studio-server": "file:./server"
   },
+  "devDependencies": {},
   "scripts": {
-    "postinstall": "typings install && tsc"
-  }
+    "test": "echo \"No test specified.\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toms-dev/web-music-studio.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toms-dev/web-music-studio/issues"
+  },
+  "homepage": "https://github.com/toms-dev/web-music-studio"
 }

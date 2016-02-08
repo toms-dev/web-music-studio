@@ -40,4 +40,14 @@ export default class SequencerSequence extends ClipSequence {
 		};
 	}
 
+	static fromJSON(json: any): SequencerSequence {
+		var seq = new SequencerSequence(null, null);
+		seq.elementsPerBeat = json.elementsPerBeat;
+		seq.sequence = json.sequence;
+
+		return seq;
+	}
+
 }
+
+ClipSequence.concreteClasses["SequencerSequence"] = SequencerSequence;

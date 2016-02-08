@@ -1,5 +1,6 @@
 
 import ClipSequence from "../ClipSequence";
+import PianoRollSequence from "./";
 
 export default class PianoRollSequence extends ClipSequence {
 
@@ -7,3 +8,5 @@ export default class PianoRollSequence extends ClipSequence {
 	}
 
 }
+
+ClipSequence.concreteClasses["PianoRollSequence"] = PianoRollSequence;

@@ -1,8 +1,11 @@
 language: node_js
 node_js:
   - "4.1"
-  - "4.0"
   - "0.12"
-  - "0.11"
-  - "0.10"
   - "iojs"
+env:
+  - PROJECT=audio-core
+  - PROJECT=gui
+  - PROJECT=server
+
+script: cd $PROJECT && npm install && npm test
