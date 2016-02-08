@@ -4,7 +4,7 @@ node_js:
   - "0.12"
   - "iojs"
 env:
-  - PROJECT=model
+  - PROJECT=audio-core
   - PROJECT=gui
   - PROJECT=server
 
