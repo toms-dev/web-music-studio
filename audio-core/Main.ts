@@ -8,6 +8,7 @@ import Clip from "./lib/Clip";
 import SequencerSequence from "./lib/sequences/SequencerSequence";
 import Sample from "./lib/channels/SampleChannel";
 import User from "./lib/User";
+import {createProject} from "./lib/network/SongAPI";
 
 var song = new Song();
 
@@ -32,10 +33,10 @@ kickSeq1.channel = kick;
 myclip.sequences.push(kickSeq1);
 
 // Note: there is some indirection with the clipID, but it ensures that the clip is globally declared.
-song.playlist.addClip(myclip.id, 4);
-song.playlist.addClip(myclip.id, 8);
-song.playlist.addClip(myclip.id, 12);
-song.playlist.addClip(myclip.id, 16);
+song.playlist.addClip(myclip.id, 4, 1);
+song.playlist.addClip(myclip.id, 8, 1);
+song.playlist.addClip(myclip.id, 12, 1);
+song.playlist.addClip(myclip.id, 16, 2);
 
 // Set the author of the song
 var author = new User();
@@ -58,3 +59,5 @@ $("#play").click(() => {
 	}, 2500)
 }, 2500);
 */
+
+createProject(null, null);

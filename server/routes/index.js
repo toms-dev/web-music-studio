@@ -8,6 +8,10 @@ router.get('/', function(req, res, next) {
     res.render('index', { title: 'Express' });
 });
 
+router.get('/socketio', function(req, res, next) {
+    res.render('testSockets', {});
+});
+
 var apiRoutes = requireDirectory(module, {recurse: false});
 for(var route in apiRoutes) {
     if(!apiRoutes.hasOwnProperty(route)) continue;

@@ -47,14 +47,15 @@ describe('Projects', function() {
 
             it('should add a contributor that does not exist', function(done) {
                 var newContributor = 'contributor123456';
-                projectDB.addContributor(projectid, newContributor, function(err, res) {
+                var role = 'fullaccess';
+                projectDB.addContributor(projectid, newContributor, role, function(err, res) {
                     if (err && !err.businessError) {
                         throw err;
                     } else if (err && err.businessError) {
                         assert(err.businessError === undefined);
                     } else {
                         assert.equal(1, res.ok);
-                        projectDB.addContributor(projectid, newContributor, function(err, res) {
+                        projectDB.addContributor(projectid, newContributor, role, function(err, res) {
                             if (err && !err.businessError) throw err;
                             assert.equal(true, err.businessError);
                             assert.equal('contributor is already associated with this project', err.message);
@@ -67,7 +68,8 @@ describe('Projects', function() {
 
             it('should remove an existing contributor', function(done) {
                 var newContributor = 'contributor1234567';
-                projectDB.addContributor(projectid, newContributor, function(err, res) {
+                var role = 'fullaccess';
+                projectDB.addContributor(projectid, newContributor, role, function(err, res) {
                     async.parallel([
                         function(callback) {
                             projectDB.removeContributor(projectid, newContributor, function(err, res) {

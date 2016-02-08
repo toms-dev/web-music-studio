@@ -4,11 +4,16 @@
     "noImplicitAny": true,
     "removeComments": true,
     "preserveConstEnums": true,
-    "outDir": "../public/js/audio-core",
     "sourceMap": true
   },
-  "files": [
+  "//files": [
     "Main.ts",
     "typings/browser.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "typings/browser",
+    "typings/main",
+    "typings/main.d.ts"
   ]
 }
