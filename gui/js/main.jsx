@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 
 import App from './components/App';
 import * as UserManagement from './service/UserManagement';
+import * as ProjectManagement from './service/ProjectManagement';
 
 ReactDOM.render((
     <App/>
@@ -18,7 +19,7 @@ $("#signUp").click(() => {
 		$("#email").val(), $("#password").val(),
 		function(success, data) {
 			if (success) {
-				alert("Success!")
+				alert("Success! You can now login using the credentials you provided.")
 			}
 			else {
 				alert("Failure: " + data.message);
@@ -27,14 +28,51 @@ $("#signUp").click(() => {
 	);
 });
 $("#signIn").click(() => {
+	var email = $("#email").val(),
+		password = $("#password").val();
 	UserManagement.signIn(
-		$("#email").val(), $("#password").val(),
-		function(success) {
+		email, password,
+		function(success, userData) {
 			if (! success) {
-				alert("Login failed!");
+				alert("Wrong credentials.");
 				return;
 			}
+			window.userID = userData._id;
+			window.username = email;
 			$("#login").fadeOut(100);
+			onSignIn();
 		}
 	)
+});
+
+function onSignIn() {
+	$("#projects-list-window").fadeIn(100);
+	refreshProjectList();
+}
+
+function refreshProjectList() {
+	ProjectManagement.listProjects((projects) => {
+		console.log("Got projects: ", projects);
+
+		var $content = $("#projects-list-content").empty();
+		if (projects.length == 0) {
+			$content.append($("<div>").text("No projects to show. Create a new one!"));
+			return;
+		}
+		projects.forEach((p) => {
+			var $el = $("<li>");
+			$el.text(p.name);
+			$content.append($el);
+		});
+
+	})
+}
+
+$("#new-project-button").click(() => {
+	var projectName = window.prompt();
+	var userID = window.userID,
+		username = window.username;
+	ProjectManagement.createProject(username, userID, projectName, () => {
+		refreshProjectList();
+	});
 });

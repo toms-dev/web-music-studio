@@ -336,6 +336,7 @@ button:hover {
     color: whitesmoke;
     padding: 1em;
     margin-top: 2em;
+    text-align: initial;
 }
 
 .overlay-content > div {

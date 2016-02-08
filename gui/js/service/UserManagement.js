@@ -5,7 +5,15 @@ export function signIn(email, password, callback) {
 		password: password
 	}, function(response, str) {
 		console.log("Sign-in response! ", response, str);
-		callback(response.userExists);
+		var userExists = response.userExists;
+		if (!userExists) {
+			callback(false, null);
+		}
+		// Get user data
+		$.get("http://localhost:3000/api/users/"+email, function(response, str) {
+			console.log("Got user:", response);
+			callback(true, response);
+		});
 	});
 }
 

@@ -36,6 +36,7 @@ export default class Song {
 		this.playlist = new Playlist(this);
 		this.channels = [];
 		this.clips = [];
+		this.author = null;
 		this.lastPauseElapsed = 0;
 
 		this.setupDefaultConfig();

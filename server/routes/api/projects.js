@@ -25,7 +25,9 @@ router.post('/', function(req, res) {
  * GET /
  */
 router.get('/', function(req, res) {
-    projectsRequests.query({}, function(err, projects) {
+	// TODO: filter by users
+	var query = {};
+    projectsRequests.query(query, function(err, projects) {
         if (err) return res.send(err);
         res.send(projects);
     });
