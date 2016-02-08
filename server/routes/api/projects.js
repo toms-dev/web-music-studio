@@ -138,10 +138,19 @@ router.post('/:id/comments', function(req, res) {
     });
 });
 
+/**
+ * GET comments from 'skip' to 'skip'+'quantity'
+ * or the 10 first comments
+ * request params :
+ *  - id (projectid)
+ * filters :
+ *  - skip
+ *  - quantity
+ */
 router.get('/:id/comments', function(req, res) {
     var skip = req.query.skip?req.query.skip:0;
-    var max = req.query.max?req.query.max:10;
-    projectsRequests.getComments(req.params.id, skip, max, function(err, project) {
+    var quantity = req.query.quantity?req.query.quantity:10;
+    projectsRequests.getComments(req.params.id, skip, quantity, function(err, project) {
         if (err) return res.send(err);
         res.send(project);
     });
