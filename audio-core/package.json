@@ -2,10 +2,12 @@
   "name": "web-music-studio-audio-core",
   "version": "0.0.1",
   "dependencies": {
+    "superagent": "^1.7.2",
     "typescript": "^1.7.5",
     "typings": "^0.6.6"
   },
   "scripts": {
     "postinstall": "typings install && tsc"
-  }
+  },
+  "main": "index.js"
 }
