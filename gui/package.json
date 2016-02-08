@@ -14,6 +14,7 @@
     "json-loader": "^0.5.4",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "superagent": "^1.7.2",
     "web-music-studio-audio-core": "file:../audio-core"
   },
   "devDependencies": {
