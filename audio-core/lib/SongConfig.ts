@@ -13,4 +13,11 @@ export default class SongConfig {
 			bpm: this.bpm
 		}
 	}
+
+	static fromJSON(json: any): SongConfig {
+		var config = new SongConfig();
+		config.bpm = json.bpm;
+		return config;
+	}
+
 }

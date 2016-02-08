@@ -5,8 +5,8 @@ console.log("Hello world!");
 import Song from "./lib/Song";
 import ClipInstance from "./lib/ClipInstance";
 import Clip from "./lib/Clip";
-import SequencerSequence from "lib/sequences/SequencerSequence";
-import Sample from "lib/channels/SampleChannel";
+import SequencerSequence from "./lib/sequences/SequencerSequence";
+import Sample from "./lib/channels/SampleChannel";
 import User from "./lib/User";
 
 var song = new Song();

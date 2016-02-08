@@ -1,7 +1,7 @@
 
 import Channel from "../Channel";
 
-export default class VST extends Channel {
+export default class VSTChannel extends Channel {
 
 	trigger(note: any, duration: number): void {
 	}
@@ -9,4 +9,10 @@ export default class VST extends Channel {
 	interrupt(): void {
 	}
 
+	concreteToJSON(): any {
+		throw new Error("Not implemented!");
+	}
+
 }
+
+Channel.concreteClasses["VSTChannel"] = VSTChannel;

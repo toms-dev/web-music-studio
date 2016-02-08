@@ -1,6 +1,6 @@
 import ClipInstance from "./ClipInstance";
 import SongTime from "./SongTime";
-import SongTimeConverter from "utils/SongTimeConverter";
+import SongTimeConverter from "./utils/SongTimeConverter";
 import Clip from "./Clip";
 import Song from "./Song";
 
@@ -79,5 +79,11 @@ export default class Playlist {
 		return {
 			clipsInstances: this.clips.map((c: ClipInstance) => {return c.toJSON();})
 		}
+	}
+
+	static fromJSON(json: any, song: Song): Playlist {
+		var playlist = new Playlist(song);
+		playlist.clips = json.clipsInstances.map((clipInstanceData: any) => { return ClipInstance.fromJSON(clipInstanceData, song)});
+		return playlist;
 	}
 }

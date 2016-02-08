@@ -2,7 +2,7 @@
 import User from "./User";
 import Playlist from "./Playlist";
 import SongConfig from "./SongConfig";
-import SongTimeConverter from "utils/SongTimeConverter";
+import SongTimeConverter from "./utils/SongTimeConverter";
 import SongTime from "./SongTime";
 import Channel from "./Channel";
 import Clip from "./Clip";
@@ -118,8 +118,25 @@ export default class Song {
 			author: this.author.email,
 			config: this.config.toJSON(),
 			playlist: this.playlist.toJSON(),
-			channels: this.channels.map((c: Channel) => { return c.toJSON();})
+			channels: this.channels.map((c: Channel) => { return c.toJSON();}),
+			clips: this.clips.map((c: Clip) => { return c.toJSON()})
 		}
+	}
+
+	public static fromJSON(json: any): Song {
+		var song = new Song();
+		song.name = json.name;
+
+		var author = new User();
+		author.email = json.author;
+
+		song.config = SongConfig.fromJSON(json.config);
+		// The order of parsing is important in order to hydrate from IDs onward! ;)
+		song.channels = json.channels.map((channelData: any) => { return Channel.fromJSON(channelData)});
+		song.clips = json.clips.map((clipData: any) => { return Clip.fromJSON(clipData, song)});
+		song.playlist = Playlist.fromJSON(json.playlist, song);
+
+		return song;
 	}
 
 }

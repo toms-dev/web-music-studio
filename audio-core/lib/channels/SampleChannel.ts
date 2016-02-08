@@ -3,7 +3,6 @@ import Channel from "../Channel";
 
 export default class SampleChannel extends Channel {
 
-
 	public filePath: string;
 
 	constructor(filePath: string) {
@@ -28,4 +27,11 @@ export default class SampleChannel extends Channel {
 		};
 	}
 
+	static fromJSON(json: any): any {
+		var sample = new SampleChannel(null);
+		sample.filePath = json.filePath;
+		return sample;
+	}
 }
+
+Channel.concreteClasses["SampleChannel"] = SampleChannel;

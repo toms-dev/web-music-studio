@@ -1,6 +1,6 @@
 
 import SongConfig from "./SongConfig";
-import SongTimeConverter from "utils/SongTimeConverter";
+import SongTimeConverter from "./utils/SongTimeConverter";
 export default class SongTime {
 
 	public steps: number;
