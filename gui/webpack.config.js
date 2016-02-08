@@ -9,7 +9,8 @@ module.exports = {
     },
     devServer: {
         inline: true,
-        port: 3333
+        port: 3333,
+		headers: { "Access-Control-Allow-Origin": "*" }
     },
     resolve: {
         extensions: [

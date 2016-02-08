@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "bind": "webpack-dev-server --content-base --port 3000"
   },
   "author": "",
   "license": "ISC",

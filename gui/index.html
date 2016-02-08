@@ -4,19 +4,20 @@
         <meta charset="UTF-8">
 
         <link rel="stylesheet" href="styles/main.css">
+		<script src="js/lib/jquery.min.js"></script>
     </head>
     <body>
 		<div id="login" class="overlay">
 			<div class="overlay-content">
 				<h1>Sign in</h1>
 				<div>
-					<input type="text" placeholder="Email" />
+					<input type="text" id="email" placeholder="Email" />
 				</div>
 				<div>
-					<input type="password" placeholder="Password" />
+					<input type="password" id="password" placeholder="Password" />
 				</div>
 				<div>
-					<button>Sign in</button> <button>Sign up</button>
+					<button id="signIn">Sign in</button> <button id="signUp">Sign up</button>
 				</div>
 			</div>
 		</div>
