@@ -21,7 +21,7 @@ var snare = new Sample("sounds/snare.wav"),
 song.channels.push(snare);
 song.channels.push(kick);
 
-var myclip = new Clip();
+var myclip = new Clip("MyClip");
 song.clips.push(myclip);
 
 var snareSeq1 = new SequencerSequence([0,0,1,0, 0,0,1,0, 0,0,1,0, 1,0,0,0], 4);
