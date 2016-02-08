@@ -4,6 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var projectsRequests = require('../../database/requests/projects');
+var logsRequests = require('../../database/requests/logs');
 
 /**
  * Create a project from a name and a username
@@ -16,6 +17,7 @@ router.post('/', function(req, res) {
     if (!req.body.name || !req.body.username) return res.sendStatus(400);
     projectsRequests.create(req.body.name, req.body.username, function(err, project) {
         if (err) return res.send(err);
+        logsRequests.create(req.body.username, "project creation", function(){});
         res.send(project);
     });
 });
@@ -71,12 +73,21 @@ router.delete('/:id', function(req, res) {
 });
 
 /**
- *
+ * Save a project
+ * PUT /:id
+ * request params :
+ *  - id (projectid)
+ * body :
+ *  - username
+ *  - data
  */
 router.put('/:id', function(req, res) {
     if (!req.body.username || !req.body.data) return res.sendStatus(400);
     projectsRequests.save(req.params.id, req.body.username, req.body.data, function(err, response) {
         if (err) return res.send(err);
+        if (response.ok) {
+            logsRequests.create(req.body.username, "project saved", function(){});
+        }
         res.send(response);
     });
 });
@@ -93,6 +104,20 @@ router.put('/:id', function(req, res) {
 router.post('/:id/contributors', function(req, res) {
     if (!req.body.username) return res.sendStatus(400);
     projectsRequests.addContributor(req.params.id, req.body.username, function(err, response) {
+        if (err) return res.send(err);
+        res.send(response);
+    });
+});
+
+/**
+ * Remove a contributor from a project
+ * POST /:id/contributors/:username
+ * request params :
+ *  - id (projectid)
+ *  - username
+ */
+router.delete('/:id/contributors/:username', function(req, res) {
+    projectsRequests.removeContributor(req.params.id, req.params.username, function(err, response) {
         if (err) return res.send(err);
         res.send(response);
     });
