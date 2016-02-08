@@ -141,7 +141,6 @@ router.post('/:id/comments', function(req, res) {
 router.get('/:id/comments', function(req, res) {
     var skip = req.query.skip?req.query.skip:0;
     var max = req.query.max?req.query.max:10;
-    console.log(skip, max);
     projectsRequests.getComments(req.params.id, skip, max, function(err, project) {
         if (err) return res.send(err);
         res.send(project);

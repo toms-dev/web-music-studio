@@ -103,8 +103,7 @@ exports.addComment = function(projectid, comment, callback) {
 
 
 exports.getComments = function(projectid, skip, limit, callback) {
-    console.log(limit);
-    Projects.findOne({_id: projectid}, {_id: 1, comments: {$slice: [skip, limit] }}, function(err, project) {
+    Projects.findOne({_id: projectid}, {_id: 1, comments: {$slice: [Number(skip), Number(limit)] }}, function(err, project) {
         callback(err, project);
     });
 };
