@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    background: #333333;
+    color: #eeeeee;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100px;
+    vertical-align: middle;
+}
+
+#header h1 {
+    display: block;
+    height: 100%;
+    float: left;
+    width: 30%;
+    vertical-align: middle;
+    padding-left: 5%;
+    box-sizing: border-box;
+}
+
+#header #bpm {
+    display: block;
+    float: left;
+    height: 100%;
+    width: 50px;
+    height: 30px;
+    padding: 0 10px;
+}
+
+#header #bpm input {
+    display: block;
+    margin: auto;
+    height: 20px;
+    width: 100%;
+}
+
+#header #music-controls {
+    display: block;
+}
+
+#app-body {
+    position: absolute;
+    bottom: 0;
+    top: 100px;
+    width: 100%;
+    display: block;
+}
+
+#sequencer {
+    display: block;
+    float: left;
+    height: 100%;
+    width: 600px;
+    box-sizing: border-box;
+    border: 1px solid #101010;
+}
+
+#sequencer .header {
+    width: 100%;
+    height: 30px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #101010;
+    padding: 2px;
+}
+
+#sequencer .header .clip-selector {
+    box-sizing: border-box;
+    height: 100%;
+    width: 250px;
+    border: 1px solid #111111;
+    border-radius: 0;
+    background: #757575;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    color: #ffffff;
+}
+
+#sequencer .header .add-selector {
+    box-sizing: border-box;
+    height: 100%;
+    width: 30px;
+    border: 1px solid #111111;
+    border-left: 0;
+    border-radius: 0;
+    background: #444444;
+    color: #ffffff;
+}
+
+
+#sequencer .channel-list .channel {
+    height: 40px;
+    padding: 0;
+}
+
+#sequencer .channel-list .channel .name {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0;
+    /*height: 100%;*/
+
+    border: 1px solid #111111;
+    background: #4f4f4f;
+    float: left;
+    margin: 5px;
+
+}
+
+#sequencer .channel-list .channel > .sequence {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 416px;
+    height: 30px;
+    float: right;
+    margin: 5px;
+
+}
+
+.toggle {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+    border: 1px solid #111111;
+    margin: 0px 3px;
+    background: #2e2e2e;
+}
+
+
+
+#playlist {
+    /*box-sizing: border-box;*/
+    display: block;
+    height: 100%;
+    width: calc(100% - 610px);
+    float: left;
+    border: 1px solid #111111;
+    margin-left: 10px;
+}
+
+

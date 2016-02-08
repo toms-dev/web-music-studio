@@ -3,21 +3,21 @@
  */
 import React from 'react';
 
-//import Sequencer from './js/Sequencer'
-import ClipButton from './ClipButton'
+import Header from './Header.jsx'
+import Sequencer from './Sequencer.jsx'
+import Playlist from './Playlist.jsx'
+
 
 module.exports = React.createClass({
-    render() {
+    render: function() {
         return (
             <div>
-                <ClipButton/>
+                <Header/>
+                <div id="app-body">
+                    <Sequencer/>
+                    <Playlist/>
+                </div>
             </div>
         );
     }
 });
-
-class App extends React.Component {
-
-}
-
-export  default  App;

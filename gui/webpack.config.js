@@ -2,7 +2,7 @@
  * Created by Louis on 18/01/2016.
  */
 module.exports = {
-    entry: './js/main.js',
+    entry: './js/main.jsx',
     output: {
         path: './build/',
         filename: 'js/index.js'
@@ -15,11 +15,22 @@ module.exports = {
         extensions: [
             "",
             ".js",
+            ".jsx",
             ".json",
+            ".css"
         ],
     },
     module: {
         loaders: [
+            {
+                //tell webpack to use jsx-loader for all *.jsx files
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    presets: ['es2015', 'react']
+                }
+            },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
@@ -34,6 +45,12 @@ module.exports = {
                     "json",
                 ],
             },
+            {
+                test: /\.css$/,
+                loaders: [
+                    "css",
+                ]
+            }
         ]
     },
     externals: {
