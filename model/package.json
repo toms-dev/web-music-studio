@@ -1,7 +1,7 @@
 {
   "name": "web-music-studio-audio-core",
   "version": "0.0.1",
-  "devDependencies": {
+  "dependencies": {
     "typescript": "^1.7.5",
     "typings": "^0.6.6"
   },
