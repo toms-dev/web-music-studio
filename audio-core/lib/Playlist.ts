@@ -99,6 +99,14 @@ export default class Playlist {
 		console.log("Clips:", this.clips);
 	}
 
+	stop(): void {
+		for (var i in this.clips) {
+			if (! this.clips.hasOwnProperty(i)) continue;
+			var clipInstance = this.clips[i];
+			clipInstance.reset();
+		}
+	}
+
 	toJSON(): any {
 		return {
 			clipsInstances: this.clips.map((c: ClipInstance) => {return c.toJSON();})
@@ -109,5 +117,18 @@ export default class Playlist {
 		var playlist = new Playlist(song);
 		playlist.clips = json.clipsInstances.map((clipInstanceData: any) => { return ClipInstance.fromJSON(clipInstanceData, song)});
 		return playlist;
+	}
+
+	isFinishedAt(currentStep: SongTime): boolean {
+		for (var i = 0; i < this.clips.length; ++i) {
+			var c = this.clips[i];
+			// If any clips ends after the current step, the song is not finished
+			if (c.startStep + c.length > currentStep.toSteps()) {
+				console.log("The end! On: ", c);
+				console.log("The end! @ ", currentStep);
+				return false;
+			}
+		}
+		return true;
 	}
 }

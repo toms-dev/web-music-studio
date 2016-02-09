@@ -86,6 +86,8 @@ export default class Song {
 	}
 
 	public stop(): void {
+		this.pause();
+		this.playlist.stop();
 		this.lastPauseElapsed = 0;
 	}
 
@@ -102,6 +104,12 @@ export default class Song {
 		var elapsed = SongTime.fromTime(elapsedTime, this.config);
 
 		if (this.log) console.log("Tick (delta:"+delta+"\t | time:"+elapsedTime+" | steps:"+elapsed.toSteps());
+
+		// Stop if the track is finished
+		if (this.playlist.isFinishedAt(elapsed)) {
+			this.stop();
+			return;
+		}
 
 		var lookaheadDuration = 2000;
 		var lookahead = SongTime.fromTime(lookaheadDuration, this.config);

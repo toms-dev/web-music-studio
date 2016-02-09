@@ -24,6 +24,11 @@ class ClipInstance {
 		this.clip = clip;
 		this.length = length;
 		this.laneID = laneID;
+
+		this.reset();
+	}
+
+	reset(): void {
 		this.scheduled = false;
 		this.localScheduledStep = 0;
 	}
@@ -31,7 +36,7 @@ class ClipInstance {
 	/**
 	 *
 	 * @param songTime Unit: steps
-	 * @param lookaheadSteps Unit: steps
+	 * @param lookahead Unit: steps
 	 */
 	play(songTime: SongTime, lookahead: SongTime): void {
 		var songSteps = songTime.steps,
@@ -86,6 +91,7 @@ class ClipInstance {
 		instance.laneID = json.laneID;
 		return instance;
 	}
+
 }
 
 export default ClipInstance;
