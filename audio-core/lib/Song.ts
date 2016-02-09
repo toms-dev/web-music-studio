@@ -16,7 +16,8 @@ export default class Song {
 	public config: SongConfig;
 
 	//private loopFrequency = 2;
-	private loopFrequency = 50;
+	private loopFrequency = 20;
+	private lookaheadDuration = 500;
 	private loopInterval: NodeJS.Timer;
 	private lastResumeTime: number;
 
@@ -111,7 +112,7 @@ export default class Song {
 			return;
 		}
 
-		var lookaheadDuration = 2000;
+		var lookaheadDuration = this.lookaheadDuration;
 		var lookahead = SongTime.fromTime(lookaheadDuration, this.config);
 
 		this.schedule(elapsed, lookahead);
