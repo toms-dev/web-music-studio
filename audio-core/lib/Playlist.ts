@@ -17,8 +17,7 @@ export default class Playlist {
 		this.lanes = [];
 	}
 
-	public schedule(songTime: SongTime, lookahead: SongTime): void {//lookaheadDuration: number, elapsedSteps:
-		// number, lookaheadSteps: number): void {
+	public schedule(songTime: SongTime, lookahead: SongTime): void {
 		var elapsedSteps = songTime.toSteps(),
 			lookaheadSteps = lookahead.toSteps();
 		//console.debug("PLAYLIST: Getting clips between " + elapsedSteps + " with lookahead=" + lookaheadSteps+ " (steps units)");
@@ -60,7 +59,8 @@ export default class Playlist {
 
 			// Stop if we got past the end of the time interval we are interested in
 			if (clip.startStep > endTime) {
-				break;
+				//break;
+				continue;
 			}
 
 			clips.push(clip);

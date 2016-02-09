@@ -1,4 +1,3 @@
-import request from "superagent";
 import {Song, User} from "web-music-studio-audio-core"
 
 export function createProject(username: string, userID: string, name: string, callback): void {
@@ -35,3 +34,6 @@ export function listProjects(callback): void {
 		}
 	);
 }
+
+module.exports.createProject = createProject;
+module.exports.listProject = listProjects;

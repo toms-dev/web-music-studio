@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "bind": "webpack-dev-server --content-base --port 3000"
+    "debug": "webpack-dev-server --display-error-details"
   },
   "author": "",
   "license": "ISC",

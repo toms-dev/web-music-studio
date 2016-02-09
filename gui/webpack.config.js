@@ -1,3 +1,5 @@
+var path = require('path');
+
 /**
  * Created by Louis on 18/01/2016.
  */
@@ -21,7 +23,13 @@ module.exports = {
             ".json",
             ".css"
         ],
+		root: path.join(__dirname, "node_modules"),
+		fallback: path.join(__dirname, "node_modules")
     },
+	resolveLoader: {
+		root: path.join(__dirname, "node_modules"),
+		fallback: path.join(__dirname, "node_modules")
+	},
     module: {
         loaders: [
             {
@@ -33,25 +41,21 @@ module.exports = {
                     presets: ['es2015', 'react']
                 }
             },
-            {
+            /*{
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel',
                 query: {
                     presets: ['es2015', 'react']
                 }
-            },
+            },*/
             {
                 test: /\.json$/,
-                loaders: [
-                    "json",
-                ],
+                loaders: ["json"]
             },
             {
                 test: /\.css$/,
-                loaders: [
-                    "css",
-                ]
+                loaders: ["css"]
             }
         ]
     },
@@ -61,4 +65,4 @@ module.exports = {
         'NB_CHAN': "5",
         'NB_TRACK': "0"
     }
-}
+};

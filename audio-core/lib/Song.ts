@@ -7,6 +7,8 @@ import Clip from "./Clip";
 
 export default class Song {
 
+	public log: boolean = false;
+
 	public name:string;
 	public author: User;
 	public playlist: Playlist;
@@ -68,6 +70,9 @@ export default class Song {
 	public play(): void {
 		this.lastResumeTime = Date.now();
 		this.lastUpdate = Date.now();
+		// Immediately trigger loop
+		this.loop();
+		// Keep triggering the loop
 		this.loopInterval = setInterval(() => {
 			this.loop();
 		}, 1000/this.loopFrequency);
@@ -96,7 +101,7 @@ export default class Song {
 		// Convert it to a SongTime object
 		var elapsed = SongTime.fromTime(elapsedTime, this.config);
 
-		console.log("Tick (delta:"+delta+"\t | time:"+elapsedTime+" | steps:"+elapsed.toSteps());
+		if (this.log) console.log("Tick (delta:"+delta+"\t | time:"+elapsedTime+" | steps:"+elapsed.toSteps());
 
 		var lookaheadDuration = 2000;
 		var lookahead = SongTime.fromTime(lookaheadDuration, this.config);
