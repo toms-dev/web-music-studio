@@ -1,12 +1,9 @@
-
 import User from "./User";
 import Playlist from "./Playlist";
 import SongConfig from "./SongConfig";
-import SongTimeConverter from "./utils/SongTimeConverter";
 import SongTime from "./SongTime";
 import Channel from "./Channel";
 import Clip from "./Clip";
-import Timer = NodeJS.Timer;
 
 export default class Song {
 
@@ -18,7 +15,7 @@ export default class Song {
 
 	//private loopFrequency = 2;
 	private loopFrequency = 50;
-	private loopInterval: Timer;
+	private loopInterval: NodeJS.Timer;
 	private lastResumeTime: number;
 
 	/**
