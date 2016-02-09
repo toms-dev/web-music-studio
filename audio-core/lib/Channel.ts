@@ -9,6 +9,8 @@ abstract class Channel {
 	public volume: number;
 	public panning: number;
 
+	public name: string;
+
 	public output: AudioParam;
 
 	public id: number;
@@ -21,6 +23,7 @@ abstract class Channel {
 			id = Channel.idAutoIncrement++;
 		}
 		this.id = id;
+		this.name = "DefaultChannelName";
 		this.volume = 1;
 		this.panning = 0;
 	}
@@ -40,6 +43,7 @@ abstract class Channel {
 			id: this.id,
 			volume: this.volume,
 			panning: this.panning,
+			name: this.name,
 			// that's so ugly lol
 			concreteChannelData: this.concreteToJSON(),
 			concreteChannelType: (<any> this.constructor).name
@@ -58,6 +62,7 @@ abstract class Channel {
 		channel.id = json.id;
 		channel.volume = json.volume;
 		channel.panning = json.panning;
+		channel.name = json.name;
 
 		return channel;
 	}

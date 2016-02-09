@@ -37,10 +37,6 @@ module.exports = React.createClass({
 				var song;
 				if (data.data) {
 					song = Song.Song.fromJSON(data.data);
-					song.channels[0].name = "Snare";
-					song.channels[1].name = "Kick";
-					song.channels[2].name = "Hi-hat";
-					song.channels[3].name = "Closed Hi-hat";
 				}
 				else {
 					song = new Song.Song();
@@ -56,7 +52,7 @@ module.exports = React.createClass({
 					s1.name = "Snare";
 					s2.name = "Kick";
 					s3.name = "Hi-hat";
-					s4.name = "Closed Hi-hat";
+					s4.name = "Closed hi-hat";
 
 					song.channels.push(s1);
 					song.channels.push(s2);
@@ -79,10 +75,6 @@ module.exports = React.createClass({
 				var song;
 
 				song = Song.Song.fromJSON(data.data);
-				song.channels[0].name = "Snare";
-				song.channels[1].name = "Kick";
-				song.channels[2].name = "Hi-hat";
-				song.channels[3].name = "Closed hi-hat";
 
 				console.log("Song update!!!!!!!", song);
 

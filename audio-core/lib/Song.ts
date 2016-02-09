@@ -61,7 +61,6 @@ export default class Song {
 		return null;
 	}
 
-
 	private setupDefaultConfig(): void {
 		this.config.bpm = 128;
 	}
