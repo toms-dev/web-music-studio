@@ -86,17 +86,9 @@ export default class Playlist {
 	}
 
 	removeClipInstance(clipInstance: ClipInstance): void {
-		console.log("ClipInstance", clipInstance);
-		console.log("Clips:", this.clips);
 		this.clips = this.clips.filter((c) => {
-			console.log(c.clip.id, clipInstance.clip.id);
-			console.log(c.laneID, clipInstance.laneID);
-			console.log(c.startStep, clipInstance.startStep);
-			console.log(c.clip.id === clipInstance.clip.id && c.laneID === clipInstance.laneID && c.startStep === clipInstance.startStep);
 			return !(c.clip.id === clipInstance.clip.id && c.laneID === clipInstance.laneID && c.startStep === clipInstance.startStep);
 		});
-
-		console.log("Clips:", this.clips);
 	}
 
 	stop(): void {
