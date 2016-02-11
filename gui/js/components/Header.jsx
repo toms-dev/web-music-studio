@@ -9,6 +9,10 @@ module.exports = React.createClass({
         this.props.song.play();
     },
 
+    stopSong: function() {
+        this.props.song.stop();
+    },
+
     handleBPMChange: function() {
         this.props.song.config.bpm = this.refs["bpm"].value;
 
@@ -25,7 +29,7 @@ module.exports = React.createClass({
                 </div>
                 <div id="music-controls">
                     <button onClick={this.playSong}>Play</button>
-                    <button>Stop</button>
+                    <button onClick={this.stopSong}>Stop</button>
                 </div>
             </div>
         );
