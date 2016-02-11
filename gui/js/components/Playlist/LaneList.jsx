@@ -7,7 +7,7 @@ module.exports = React.createClass({
 
     getInitialState: function() {
         return {
-            lanes: [1, 1, 1, 1]
+            lanes: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         };
     },
 

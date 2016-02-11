@@ -59,7 +59,7 @@ module.exports = React.createClass({
 					song.channels.push(s3);
 					song.channels.push(s4);
 				}
-				self.state.song.currentClip = self.state.song.clips[0];
+				song.currentClip = song.clips[0];
 
 				console.log("Song update!!!!!!!", song);
 				self.setState({
@@ -86,12 +86,6 @@ module.exports = React.createClass({
 
 
 		});
-
-		var song = this.state.song;
-
-		this.setState({
-			song: this.state.song
-		});
 	},
 
     getInitialState: function() {
@@ -110,10 +104,10 @@ module.exports = React.createClass({
     },
 
     render: function() {
-		if (window.react.state.song.currentClip == undefined) {
-			var clip = window.react.state.song.currentClip;
-			this.state.song.currentClip = clip;
-		}
+		//if (window.react.state.song.currentClip == undefined) {
+		//	var clip = window.react.state.song.currentClip;
+		//	this.state.song.currentClip = clip;
+		//}
         return (
             <div>
                 <Header song={this.state.song}/>

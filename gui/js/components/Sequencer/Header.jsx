@@ -28,6 +28,13 @@ module.exports = React.createClass({
 
         var clip = new Song.Clip(name);
 
+        // fix id bug
+        let id = this.props.song.clips.reduce((lastID, clip) => {
+            return Math.max(lastID, clip.id);
+        }, 0);
+
+        clip.id = id + 1;
+
         clip.sequences = this.props.song.channels.map((c) => {
             var sequence = new Song.SequencerSequence([0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0], 4);
             sequence.channel = c;
@@ -50,7 +57,7 @@ module.exports = React.createClass({
 
         this.props.song.currentClip = this.props.song.clips[activeClip.value];
 		console.log("New active clip: ", activeClip.value);
-		window.react.state.song.currentClip = this.props.song.clips[activeClip.value];
+		//window.react.state.song.currentClip = this.props.song.clips[activeClip.value];
 
         Context.notifyAll();
     },

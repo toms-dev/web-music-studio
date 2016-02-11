@@ -32,7 +32,7 @@ module.exports = React.createClass({
             var on = t?true:false;
             return ((i/4)%2 < 1)?
                 (<Toggle ref={"toggle-"+i} callback={self.updateSequence} on={on}/>):
-                (<Toggle ref={"toggle-"+i} callback={self.updateSequence} on={on}/>);
+                (<Toggle ref={"toggle-"+i} callback={self.updateSequence} on={on} alt="true"/>);
         });
 
 
